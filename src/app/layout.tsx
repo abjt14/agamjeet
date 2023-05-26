@@ -1,12 +1,22 @@
-import { EB_Garamond } from 'next/font/google';
 import Navigation from '@/components/Navigation';
-import './globals.css';
 import clsx from 'clsx';
 import Script from 'next/script';
+import localFont from 'next/font/local';
+import './globals.css';
 
-const eb_garamond = EB_Garamond({
-  weight: ['400', '500'],
-  subsets: ['latin'],
+const eb_garamond = localFont({
+  src: [
+    {
+      path: '../../public/fonts/EBGaramond-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/EBGaramond-Medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+  ],
   display: 'swap',
   variable: '--font-eb-garamond',
 });
