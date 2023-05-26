@@ -1,24 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-/* katex start */
-/* @import './katex.css'; */
-
-:not(.dark) .katex {
-  @apply text-cinder-800;
-}
-
-:not(.dark) .katex-display {
-  @apply p-4 m-0 bg-macaroni-and-cheese-50 rounded-md border border-macaroni-and-cheese-300;
-}
-
-.dark .katex {
-  @apply text-macaroni-and-cheese-300;
-}
-
-.dark .katex-display {
-  @apply bg-neutral-950 border-cinder-900;
-}
-/* katex end */
