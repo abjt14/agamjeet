@@ -2,26 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+/* katex start */
+/* @import './katex.css'; */
+
+:not(.dark) .katex {
+  @apply text-cinder-800;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+:not(.dark) .katex-display {
+  @apply p-4 m-0 bg-macaroni-and-cheese-50 rounded-md border border-macaroni-and-cheese-300;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.dark .katex {
+  @apply text-macaroni-and-cheese-300;
 }
+
+.dark .katex-display {
+  @apply bg-neutral-950 border-cinder-900;
+}
+/* katex end */
