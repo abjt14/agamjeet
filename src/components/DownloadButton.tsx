@@ -1,5 +1,5 @@
 interface DownloadButtonProps {
-  type: 'problems' | 'answer-key';
+  type: 'problems' | 'answers';
   url: string;
 }
 
