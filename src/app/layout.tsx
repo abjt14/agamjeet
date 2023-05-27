@@ -66,15 +66,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark font-sans">
+    <html lang="en" className="dark font-sans relative">
       <Script id="set-theme">
         {`
-          console.log('run');
           if (window.localStorage.theme === 'dark' || (!('theme' in window.localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            console.log('window.localStorage.theme', window.localStorage.theme);
             document.documentElement.classList.add('dark')
           } else {
-            console.log('asd 2');
             document.documentElement.classList.remove('dark')
           }
         `}
