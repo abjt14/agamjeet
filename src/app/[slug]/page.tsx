@@ -55,7 +55,7 @@ export default function Article({ params } : { params: { slug: string } }) {
                 url={`/articles/${article.slug}/problems.pdf`}
               />
               <DownloadButton
-                type="answers"
+                type="answer-key"
                 url={`/articles/${article.slug}/answers.pdf`}
               />
             </div>
