@@ -1,5 +1,5 @@
 interface DownloadButtonProps {
-  type: 'problems' | 'answers';
+  type: 'problems' | 'answer-key';
   url: string;
 }
 
@@ -10,7 +10,7 @@ export default function DownloadButton({ type, url }: DownloadButtonProps) {
       text: 'problems',
     },
     {
-      id: 'answers',
+      id: 'answer-key',
       text: 'answer key',
     },
   ];
