@@ -1,6 +1,6 @@
 ---
 title: 'IOQM 2023 Apple Mock One'
-publishedAt: '2023-06-17'
+publishedAt: '2023-06-23'
 summary: 'Sharing a mock test for IOQM 2023 and discussing some nice problems from it'
 category: 'mock-test'
 ---
@@ -21,7 +21,9 @@ $$
 Now we want to manipulate this expression in order to be able to use the value of $P(0)$,$Q(1)$ and compute $P(1)$. So we substitute in $x = 1$ to get:
 $$Q(1)=\prod_{i<j}\left(1-\frac{1}{r_i}-\frac{1}{r_j}+\frac{1}{r_i r_j}\right)$$
 Thus we know that this expression is equal to $2$. Now note that the denominators resemble something like $(1-r_i)(1-r_j)$, which reminds us that we can write $P(x)$ as $\prod_{i=1}^9 (1-r_i)$ which is a good sign. Thus taking the common fraction we get:
-$$Q(1) = \prod_{i<j} \left( \frac{r_ir_j - r_j-r_i+1}{r_ir_j}  \right) = \prod_{i<j} \left(  \frac{(1-r_i)(1-r_j)}{r_ir_j} \right) = \frac{P(1)^2}{(r_1r_2\cdots r_{10})^9}$$
+$$
+Q(1) = \prod_{i<j} \left( \frac{r_ir_j - r_j-r_i+1}{r_ir_j}  \right) = \prod_{i<j} \left(  \frac{(1-r_i)(1-r_j)}{r_ir_j} \right) = \frac{P(1)^2}{(r_1r_2\cdots r_{10})^9}
+$$
 Now we can use $P(0) = 2$ as it is the product of roots, thus the fraction evaluates to $\frac{P(1)^9}{2^9}$. So $P(1)^9 = 2^{10}$. From here, the answer is $\frac{10}{9}$.
 
 
