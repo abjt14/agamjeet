@@ -1,10 +1,11 @@
 import { allArticles } from 'contentlayer/generated';
 import Link from 'next/link';
 import clsx from 'clsx';
+import { format } from 'date-fns';
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-start justify-between gap-24">
+    <main className="flex flex-col items-start justify-between gap-24 w-full">
       <header className="text-left flex flex-col gap-4">
         <h1 className="text-cinder-800 font-medium dark:font-normal dark:text-macaroni-and-cheese-300 text-4xl font-ebgaramond mb-4">Agamjeet Singh</h1>
         <p className="">I find mathematics to be very intriguing and am constantly discovering new ideas, learning new things, and expanding my arsenal. I enjoy solving olympiad math and collecting intricate problems. I have also built a positive community on discord for people to learn, discuss, and collaborate.</p>
@@ -26,7 +27,7 @@ export default function Home() {
                   </div>
                   <h3>{article.summary}</h3>
                   <div className="flex gap-1 justify-start items-center text-xs text-cinder-800 dark:text-cinder-500">
-                    <span>{article.publishedAt}</span>
+                    <span>{format(new Date(article.publishedAt), 'MMMM yyyy')}</span>
                     <span>•</span>
                     <span>{(article.readingTime > 0 ? article.readingTime.toString() : '1')+ ' min'}</span>
                   </div>
