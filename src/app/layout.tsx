@@ -4,6 +4,7 @@ import Script from 'next/script';
 import localFont from 'next/font/local';
 import './globals.css';
 import Footer from '@/components/Footer';
+import { Analytics } from '@vercel/analytics/react';
 
 const eb_garamond = localFont({
   src: [
@@ -85,6 +86,7 @@ export default function RootLayout({
         <Navigation />
         {children}
         <Footer />
+        <Analytics />
       </body>
     </html>
   )
