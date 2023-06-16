@@ -1065,6 +1065,14 @@ body {
 }
 
 /* katex custom start */
+@media (max-width: 640px) {
+  .math-display > .katex-display > .katex {
+    width: calc(100vw - 5rem);
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+}
+
 :not(.dark) .katex {
   @apply text-cinder-800;
 }
