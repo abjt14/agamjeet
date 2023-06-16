@@ -44,7 +44,7 @@ export default function Article({ params } : { params: { slug: string } }) {
   }
 
   return (
-    <section className="flex flex-col items-start justify-between gap-8">
+    <section className="flex flex-col items-start justify-between gap-8 w-full">
       <div className="flex flex-col gap-4 sm:gap-2">
         <h1 className="text-cinder-800 font-medium dark:font-normal text-4xl dark:text-macaroni-and-cheese-300 font-ebgaramond">{article.title}</h1>
         {
@@ -55,16 +55,16 @@ export default function Article({ params } : { params: { slug: string } }) {
                 url={`/articles/${article.slug}/problems.pdf`}
               />
               <DownloadButton
-                type="answers"
-                url={`/articles/${article.slug}/answers.pdf`}
+                type="answer-key"
+                url={`/articles/${article.slug}/answer-key.pdf`}
               />
             </div>
           )
         }
         <div className="flex gap-2 justify-start items-baseline text-sm text-cinder-800 dark:text-cinder-500">
-          <p>{format(new Date(article.publishedAt), 'MMMM yyyy')}</p>
+          <p>{format(new Date(article.publishedAt), 'd MMMM yyyy')}</p>
           <p>•</p>
-          <p>{(article.readingTime > 0 ? article.readingTime.toString() : '1')+ ' min'}</p>
+          <p>{(article.readingTime > 0 ? article.readingTime.toString() : '1')+ ' minutes'}</p>
         </div>
       </div>
       {
