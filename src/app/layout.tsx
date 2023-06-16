@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import Script from 'next/script';
 import localFont from 'next/font/local';
 import './globals.css';
+import Footer from '@/components/Footer';
 
 const eb_garamond = localFont({
   src: [
@@ -83,6 +84,7 @@ export default function RootLayout({
       )}>
         <Navigation />
         {children}
+        <Footer />
       </body>
     </html>
   )

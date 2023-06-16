@@ -4,7 +4,7 @@ export default function About() {
   return (
     <main className="flex flex-col items-start justify-between gap-8 w-full">
       <div className="flex flex-col sm:flex-row gap-8 md:gap-12 justify-between items-start sm:items-center">
-        <div className="image-wrapper flex-1 rounded-full border-2 dark:border border-cinder-900 dark:border-macaroni-and-cheese-300 cursor-pointer overflow-hidden bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-transparent via-macaroni-and-cheese-200 to-transfrom-transparent dark:from-transparent dark:via-cinder-900 dark:to-transparent">
+        <div className="image-wrapper flex-1 rounded-full border-2 dark:border border-cinder-900 dark:border-macaroni-and-cheese-300 overflow-hidden bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-transparent via-macaroni-and-cheese-200 to-transfrom-transparent dark:from-transparent dark:via-cinder-900 dark:to-transparent">
           <Image src="/me.png" alt="me" width={589} height={608} className="grayscale max-w-[10rem] sm:max-w-full" />
         </div>
         <div className="flex-[3] md:flex-[4] text-cinder-900 dark:text-macaroni-and-cheese-300 text-2xl font-medium dark:font-normal sm:text-3xl font-ebgaramond">
