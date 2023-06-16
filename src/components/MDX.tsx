@@ -8,7 +8,7 @@ export default function MDX({ code }: MDXProps) {
   const MDXComponent = useMDXComponent(code);
 
   return (
-    <article className="flex flex-col gap-4 pb-12">
+    <article className="flex flex-col gap-4">
       <MDXComponent />
     </article>
   )

@@ -78,7 +78,7 @@ export default function RootLayout({
       </Script>
       <body className={clsx(
         eb_garamond.variable,
-        "min-h-screen max-w-screen-lg mx-auto flex gap-24 flex-col items-center justify-start p-6 sm:p-12 lg:p-24",
+        "min-h-screen max-w-screen-lg mx-auto flex gap-24 flex-col items-center justify-start p-6 pb-12 sm:p-12 lg:p-24",
         "text-macaroni-and-cheese-800 bg-macaroni-and-cheese-100 selection:bg-cinder-800 selection:text-macaroni-and-cheese-300 dark:text-cinder-300 dark:bg-cinder-950 leading-7 dark:selection:bg-macaroni-and-cheese-300 dark:selection:text-indigo-950"
       )}>
         <Navigation />
