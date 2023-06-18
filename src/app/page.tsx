@@ -30,6 +30,8 @@ export default function Home() {
                     <span>{format(new Date(article.publishedAt), 'MMMM yyyy')}</span>
                     <span>•</span>
                     <span>{(article.readingTime > 0 ? article.readingTime.toString() : '1')+ ' min'}</span>
+                    {/* <span>•</span>
+                    <span></span> */}
                   </div>
                 </Link>
               </li>

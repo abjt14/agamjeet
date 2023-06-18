@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 import MDX from '@/components/MDX';
 import { Metadata } from 'next';
 import DownloadButton from '@/components/DownloadButton';
+import ArticleViews from '@/components/ArticleViews';
 
 export async function generateStaticParams() {
   return allArticles.map((article) => ({
@@ -52,11 +53,11 @@ export default function Article({ params } : { params: { slug: string } }) {
             <div className="flex gap-2 justify-between sm:justify-start">
               <DownloadButton
                 type="problems"
-                url={`/articles/${article.slug}/problems.pdf`}
+                slug={article.slug}
               />
               <DownloadButton
                 type="answer-key"
-                url={`/articles/${article.slug}/answer-key.pdf`}
+                slug={article.slug}
               />
             </div>
           )
@@ -65,12 +66,15 @@ export default function Article({ params } : { params: { slug: string } }) {
           <p>{format(new Date(article.publishedAt), 'd MMMM yyyy')}</p>
           <p>•</p>
           <p>{(article.readingTime > 0 ? article.readingTime.toString() : '1')+ ' minutes'}</p>
+          {/* <p>•</p>
+          <p></p> */}
         </div>
       </div>
       {
         article.category === 'mock-test' && <span className="text-cinder-800 dark:text-macaroni-and-cheese-300">This article contains spoilers for the mock test.</span>
       }
       <MDX code={article.body.code} />
+      <ArticleViews slug={article.slug} />
     </section>
   )
 }
