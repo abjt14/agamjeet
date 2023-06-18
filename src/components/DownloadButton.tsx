@@ -1,9 +1,11 @@
+'use client';
+
 interface DownloadButtonProps {
   type: 'problems' | 'answer-key';
-  url: string;
+  slug: string;
 }
 
-export default function DownloadButton({ type, url }: DownloadButtonProps) {
+export default function DownloadButton({ type, slug }: DownloadButtonProps) {
   const content = [
     {
       id: 'problems',
@@ -14,9 +16,10 @@ export default function DownloadButton({ type, url }: DownloadButtonProps) {
       text: 'answer key',
     },
   ];
+
   return (
     <a
-      href={url}
+      href={`/articles/${slug}/${type}.pdf`}
       target="_blank"
       className="flex flex-1 sm:flex-none gap-2 sm:gap-1 items-center justify-center px-4 py-2 sm:px-2 sm:py-1 rounded-md transition-all duration-150 bg-macaroni-and-cheese-50 border border-macaroni-and-cheese-300 text-cinder-800 hover:border-cinder-800 dark:bg-neutral-950 dark:border-cinder-800 dark:text-white dark:hover:border-macaroni-and-cheese-300"
     >
