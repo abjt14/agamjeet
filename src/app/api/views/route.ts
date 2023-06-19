@@ -1,4 +1,3 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from '@prisma/client';
 
@@ -12,7 +11,7 @@ export async function GET(
 
     if (!slug) {
       return NextResponse.json({
-        message: 'Slug is required.'
+        message: 'Article slug is required.'
       },{
         status: 500
       })
@@ -28,7 +27,7 @@ export async function GET(
     });
 
     return NextResponse.json({
-      views: views ?? 0
+      views: views?.count ?? 0
     },{
       status: 200
     })
@@ -52,7 +51,7 @@ export async function POST(
 
     if (!slug) {
       return NextResponse.json({
-        message: 'Slug is required.'
+        message: 'Article slug is required.'
       },{
         status: 500
       })
@@ -72,7 +71,7 @@ export async function POST(
     const views = await updateView(slug);
 
     return NextResponse.json({
-      views: views
+      views: views.count
     },{
       status: 200
     })
