@@ -26,7 +26,7 @@ export default function About() {
             In my free time, I love playing electric guitar, which I started learning at 11. I have been doing the Rock and Pop course from Trinity College of London for the past few years and will complete it in the coming months. I also play the synthesizer, which I started learning at the age of 5. I have performed many times in school orchestras, and I was the youngest member of the group. Besides music, I also enjoy watching movies and anime.
           </p>
           <p>
-            Thank you for reading! If you want to work together or talk about Math, Music, or Anime, you can shoot me a message on <a className="underline underline-offset-4 decoration-macaroni-and-cheese-400 dark:decoration-cinder-600 hover:decoration-macaroni-and-cheese-800 hover:dark:decoration-cinder-300 duration-150 transition-all will-change-auto" href="https://www.linkedin.com/in/agamjeet-singh/" target="_blank">linkedin</a>.
+            Thank you for reading! If you want to work together or talk about Math, Music, or Anime, you can shoot me a message on <a className="underline underline-offset-4 decoration-macaroni-and-cheese-400 dark:decoration-cinder-600 hover:decoration-macaroni-and-cheese-800 hover:dark:decoration-cinder-300 duration-150 transition-[text-decoration-color] will-change-auto" href="https://www.linkedin.com/in/agamjeet-singh/" target="_blank">linkedin</a>.
           </p>
         </div>
       </div>

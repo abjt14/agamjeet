@@ -1086,6 +1086,10 @@ body {
 }
 
 .dark .katex-display {
-  @apply bg-neutral-950 border-cinder-900;
+  @apply bg-cinder-950 border-cinder-900;
+}
+
+.math.math-display .katex-display {
+  padding: 1.5rem 1rem 1rem 1rem;
 }
 /* katex custom end */
