@@ -25,7 +25,8 @@ model Views {
 }
 
 model Downloads {
-  articleSlug String @id @unique
+  id Int @id @default(autoincrement())
+  articleSlug String
   count Int @default(0)
   type Int
   createdAt   DateTime @default(now())

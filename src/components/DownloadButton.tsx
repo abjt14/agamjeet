@@ -26,10 +26,6 @@ export default function DownloadButton({ type, slug }: DownloadButtonProps) {
         fetch(`/api/downloads?slug=${slug}&type=${type}`, {
           method: 'POST',
         })
-        .then((res) => res.json())
-        .then((json) => {
-          console.log(json);
-        })
         .catch((err) => console.error(err));
       }}
     >

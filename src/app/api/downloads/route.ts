@@ -39,7 +39,8 @@ export async function GET(
     });
 
     return NextResponse.json({
-      downloads: downloads?.count ?? 0
+      downloads: downloads?.count ?? 0,
+      type
     },{
       status: 200
     })
@@ -98,7 +99,8 @@ export async function POST(
     });
 
     return NextResponse.json({
-      downloads: updateDownloads.count
+      downloads: updateDownloads.count,
+      type
     },{
       status: 200
     })
@@ -113,9 +115,4 @@ export async function POST(
       status: 500
     })
   }
-}
-
-interface HelperProps {
-  slug: string;
-  type: string;
 }
