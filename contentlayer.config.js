@@ -25,6 +25,10 @@ export const Article = defineDocumentType(() => ({
       type: 'string',
       required: true,
     },
+    answerKey: {
+      type: 'boolean',
+      required: false,
+    }
   },
   computedFields: {
     slug: {
