@@ -30,6 +30,8 @@ model Downloads {
   type Int
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  @@unique(fields: [articleSlug, type], name: "downloadsId")
 }
 
 model DownloadTypes {
