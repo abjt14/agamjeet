@@ -2,6 +2,7 @@ import { allArticles } from 'contentlayer/generated';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { format } from 'date-fns';
+import ArticleViews from '@/components/ArticleViews';
 
 export default function Home() {
   return (
@@ -30,8 +31,7 @@ export default function Home() {
                     <span>{format(new Date(article.publishedAt), 'MMMM yyyy')}</span>
                     <span>•</span>
                     <span>{(article.readingTime > 0 ? article.readingTime.toString() : '1')+ ' min'}</span>
-                    {/* <span>•</span>
-                    <span></span> */}
+                    <ArticleViews slug={article.slug} trackView={false} />
                   </div>
                 </Link>
               </li>

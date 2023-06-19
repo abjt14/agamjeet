@@ -63,18 +63,16 @@ export default function Article({ params } : { params: { slug: string } }) {
           )
         }
         <div className="flex gap-2 justify-start items-baseline text-sm text-cinder-800 dark:text-cinder-500">
-          <p>{format(new Date(article.publishedAt), 'd MMMM yyyy')}</p>
-          <p>•</p>
-          <p>{(article.readingTime > 0 ? article.readingTime.toString() : '1')+ ' minutes'}</p>
-          {/* <p>•</p>
-          <p></p> */}
+          <span>{format(new Date(article.publishedAt), 'd MMMM yyyy')}</span>
+          <span>•</span>
+          <span>{(article.readingTime > 0 ? article.readingTime.toString() : '1')+ ' minutes'}</span>
+          <ArticleViews slug={article.slug} trackView={true} />
         </div>
       </div>
       {
         article.category === 'mock-test' && <span className="text-cinder-800 dark:text-macaroni-and-cheese-300">This article contains spoilers for the mock test.</span>
       }
       <MDX code={article.body.code} />
-      <ArticleViews slug={article.slug} />
     </section>
   )
 }
