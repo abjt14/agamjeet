@@ -21,7 +21,7 @@ export default function DownloadButton({ type, slug }: DownloadButtonProps) {
     <a
       href={`/articles/${slug}/${type}.pdf`}
       target="_blank"
-      className="flex flex-1 sm:flex-none gap-2 sm:gap-1 items-center justify-center px-4 py-2 sm:px-2 sm:py-1 rounded-md transition-all duration-150 bg-macaroni-and-cheese-50 border border-macaroni-and-cheese-300 text-cinder-800 hover:border-cinder-800 dark:bg-neutral-950 dark:border-cinder-800 dark:text-white dark:hover:border-macaroni-and-cheese-300"
+      className="flex flex-1 sm:flex-none gap-2 items-center justify-center px-4 py-2 sm:px-3 sm:py-1 rounded-md transition-[border-color] duration-150 bg-macaroni-and-cheese-100 border border-macaroni-and-cheese-300 text-cinder-800 hover:border-cinder-800 dark:bg-neutral-950 dark:border-cinder-800 dark:text-cinder-300 dark:hover:border-macaroni-and-cheese-300 group"
       onClick={() => {
         fetch(`/api/downloads?slug=${slug}&type=${type}`, {
           method: 'POST',
@@ -29,9 +29,36 @@ export default function DownloadButton({ type, slug }: DownloadButtonProps) {
         .catch((err) => console.error(err));
       }}
     >
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 sm:w-4 sm:h-4">
-        <path fillRule="evenodd" d="M12 2.25a.75.75 0 01.75.75v11.69l3.22-3.22a.75.75 0 111.06 1.06l-4.5 4.5a.75.75 0 01-1.06 0l-4.5-4.5a.75.75 0 111.06-1.06l3.22 3.22V3a.75.75 0 01.75-.75zm-9 13.5a.75.75 0 01.75.75v2.25a1.5 1.5 0 001.5 1.5h13.5a1.5 1.5 0 001.5-1.5V16.5a.75.75 0 011.5 0v2.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V16.5a.75.75 0 01.75-.75z" clipRule="evenodd" />
-      </svg>
+      <span className="
+        relative
+        overflow-hidden
+
+        before:content-['↓']
+        before:absolute
+        before:top-1/2
+        before:left-1/2
+        before:-translate-x-1/2
+        before:-translate-y-1/2
+        before:h-full
+        before:w-full
+        before:transition-transform
+        before:duration-300
+        group-hover:before:translate-y-full
+
+        after:content-['↓']
+        after:absolute
+        after:top-1/2
+        after:left-1/2
+        after:-translate-x-1/2
+        after:translate-y-[-150%]
+        after:h-full
+        after:w-full
+        after:transition-transform
+        after:duration-300
+        group-hover:after:-translate-y-1/2
+      ">
+        <span className="text-transparent">↓</span>
+      </span>
       <span className="text-xl sm:text-sm">{content.find((item) => item.id === type)?.text}</span>
     </a>
   )
