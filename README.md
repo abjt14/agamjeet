@@ -1,6 +1,6 @@
 # Agamjeet's Blog Website
 
-<img src="https://raw.githubusercontent.com/abjt14/web-inspire/main/screenshot.jpg" width=100% height=100%>
+<img src="https://raw.githubusercontent.com/abjt14/agamjeet/main/screenshot.jpg" width=100% height=100%>
 
 ## Built With
 - [TypeScript](https://www.typescriptlang.org/)
