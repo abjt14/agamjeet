@@ -21,7 +21,7 @@ export default function DownloadButton({ type, slug }: DownloadButtonProps) {
     <a
       href={`/articles/${slug}/${type}.pdf`}
       target="_blank"
-      className="flex flex-1 sm:flex-none gap-2 items-center justify-center px-4 py-2 sm:px-3 sm:py-1 rounded-md transition-[border-color] duration-150 bg-macaroni-and-cheese-100 border border-macaroni-and-cheese-300 text-cinder-800 hover:border-cinder-800 dark:bg-neutral-950 dark:border-cinder-800 dark:text-cinder-300 dark:hover:border-macaroni-and-cheese-300 group"
+      className="flex flex-1 sm:flex-none gap-2 items-center justify-center px-2 py-2 sm:px-3 sm:py-1 rounded-md transition-[border-color] duration-150 bg-macaroni-and-cheese-100 border border-macaroni-and-cheese-300 text-cinder-800 hover:border-cinder-800 dark:bg-neutral-950 dark:border-cinder-800 dark:text-cinder-300 dark:hover:border-macaroni-and-cheese-300 group"
       onClick={() => {
         fetch(`/api/downloads?slug=${slug}&type=${type}`, {
           method: 'POST',
@@ -59,7 +59,7 @@ export default function DownloadButton({ type, slug }: DownloadButtonProps) {
       ">
         <span className="text-transparent">↓</span>
       </span>
-      <span className="text-xl sm:text-sm">{content.find((item) => item.id === type)?.text}</span>
+      <span className="text-base sm:text-sm">{content.find((item) => item.id === type)?.text}</span>
     </a>
   )
 }
