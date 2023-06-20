@@ -1065,6 +1065,14 @@ body {
 }
 
 /* katex custom start */
+@media (max-width: 768px) {
+  .math-display > .katex-display > .katex {
+    width: calc(100vw - 8rem);
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+}
+
 @media (max-width: 640px) {
   .math-display > .katex-display > .katex {
     width: calc(100vw - 5rem);
