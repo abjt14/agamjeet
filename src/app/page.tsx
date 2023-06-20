@@ -24,7 +24,7 @@ export default function Home() {
                   "sm:after:content-['☞'] sm:after:absolute sm:after:-top-1 sm:after:right-[calc(100%+.5rem)] sm:after:w-auto sm:after:h-full sm:after:-z-20 sm:after:opacity-0 sm:after:text-cinder-800 dark:sm:after:text-macaroni-and-cheese-300 sm:after:text-3xl sm:after:transition-opacity sm:after:duration-150 sm:after:hover:opacity-100 sm:after:ease",
                 )}>
                   <div className="flex gap-4 items-center">
-                    <h2 className="text-cinder-800 font-medium dark:font-normal dark:text-macaroni-and-cheese-300 text-xl font-ebgaramond">{article.title}</h2>
+                    <h2 className="text-cinder-800 font-semibold dark:font-medium sm:font-medium sm:dark:font-normal dark:text-macaroni-and-cheese-300 text-xl font-ebgaramond">{article.title}</h2>
                   </div>
                   <h3>{article.summary}</h3>
                   <div className="flex gap-1 justify-start items-center text-xs text-cinder-800 dark:text-cinder-500">
