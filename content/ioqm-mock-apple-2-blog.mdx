@@ -1,0 +1,33 @@
+---
+title: 'IOQM 2023 Apple Mock Two'
+publishedAt: '2023-06-30'
+summary: 'Sharing another mock test for IOQM 2023 and discussing some cool problems from it'
+category: 'mock-test'
+---
+This is the second IOQM Mock test from MOMC. The problems are taken from [PuMaC 2019](https://pumac.princeton.edu/#index) and [CHMMC 2013](https://www.chmmc.org/). All the credit and authorship of the problems belongs to their respective sources.
+
+This time, there are no bonus problems since I only used two sources. I would like to discuss a beautiful algebra and a number theory problem from the mock. So if you are planning to attempt the mock, beware of the spoilers ahead.
+
+**Problem 24:** $\textbf{(PUMaC 2019 Algebra A P3)}$ Let $Q$ be a quadratic polynomial. If the sum of the roots of $Q^{100}(x)$ (where $Q^i(x)$ is defined by $Q^1(x)=Q(x), Q^i(x)=Q\left(Q^{i-1}(x)\right)$ for integers $\left.i \geq 2\right)$ is $8$ and the sum of the roots of $Q$ is $S$, find $\left|\log _2(S)\right|$. 
+
+**Solution:** Such a strange problem. We are just given the sum of roots of $Q$ composed $100$ times to itself, and are asked to find the sum of roots of $Q$. Denote the sum of roots of $Q^i(x)$ by $S_i$. Let us try to come up with a relation between consecutive terms of the sequence $S_i$.  Let $Q(x) = a(x-b)(x-c)$. Therefore:
+$$
+Q^{i+1}(x) = a(Q^i(x)-b)(Q^i(x)-c)
+$$
+Now $Q^{i+1}(x)$ vanishes when $Q^i(x) = b$ or $c$. Thus $S_{i+1}$ is the sum of all solutions to $Q^i(x) = b,c$. Now the key observation here is that, by Vieta, the sum of roots of a polynomial $P$ depends only on the coefficient of $x^d, x^{d-1}$ where $d$ is the degree of $P$. Clearly degree of $Q^i(x)$ is atleast $2$. Thus a change of $-b$ or $-c$ in the constant term doesn't make a difference in the sum of roots. Thus the sum of roots of $Q^i(x)-b = 0$ or $Q^{i}(x)-c=0$ is $S_i+S_i = 2S_i$. Thus we have the simple recurrence $S_{i+1} = 2S_{i}$. Now it is given that $S_{100} = 8$. Thus $S_1$ is $\frac{8}{2^{99}} = 2^{-96}$. Hence the answer is $96$.
+
+
+**Problem 25:** $\textbf{(CHMMC 2013 Teams Round P10)}$ Compute the lowest positive integer $k$ such that none of the numbers in the sequence $\{1,1+$ $\left.k, 1+k+k^2, 1+k+k^2+k^3, \cdots\right\}$ are prime.
+
+**Solution:** Our main aim is to find a small positive integer $k$ satisfying the problem. This would be, by wishful thinking, the lowest such positive integer $k$. Now let us try to factorize the terms in the sequence to show that they are composite. Let $T_n = 1+ k + \cdots + k^n$.  Firstly its easy to see that if $n$ is odd, then $1+k$ divides $T_n$. Thus if $n>1$ is odd then $T_n$ is composite. Note that we need to separately ensure that $1+k$ is composite.
+
+Now for the case when $n$ is even, recall the identity: $1 + k^2 + k^4 = (1+k+k^2)(1-k+k^2)$. Note that this can be extended as follows:
+$$
+1 + k^2 + k^4 + \cdots + k^{4m} = (1+k+k^2 + \cdots + k^{2m})(1-k + k^2 - \cdots + k^{2m})
+$$
+The issue here is that we miss the odd exponent terms. But if $k$ itself is a perfect square then we can apply the above identity to show that $T_n$ is composite for all even $n$.
+
+Suppose $k$ is a perfect square. Then $T_n$ is composite for all $n>1$. For $n=1$ we require $k+1$ to be composite. Thus $1,4$ don't work and $9$ is the smallest perfect square that works. Now its just a matter of manual computations to check that no $k<9$ works.
+
+
+Also check out P27 and P28, as they are quite nice as well.
