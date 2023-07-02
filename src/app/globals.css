@@ -38,7 +38,7 @@ body::before {
 	pointer-events: none;
 	transform: scale(1);
 	will-change: transform;
-	animation: fadein-bg-gradient 2s forwards;
+	animation: fadein-bg-gradient 1s forwards;
 }
 
 .dark body::before {
