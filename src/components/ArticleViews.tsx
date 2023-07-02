@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function ArticleViews({ slug, trackView }: {
   slug: string,
-  trackView: boolean
+  trackView: boolean,
 }) {
   const [views, setViews] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -15,8 +15,10 @@ export default function ArticleViews({ slug, trackView }: {
     })
     .then((res) => res.json())
     .then((json) => {
-      setViews(json.views);
-      setIsLoading(false);
+      if (json.views) {
+        setViews(json.views);
+        setIsLoading(false);
+      }
     })
     .catch((err) => console.error(err));
   }, [slug, trackView]);
@@ -26,7 +28,7 @@ export default function ArticleViews({ slug, trackView }: {
       <></>
     ) : (
       <>
-        <span>•</span>
+        <span>&#10022;</span>
         <span>{views} views</span>
       </>
     )
