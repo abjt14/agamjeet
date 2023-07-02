@@ -29,7 +29,7 @@ export default function Home() {
                   <h3>{article.summary}</h3>
                   <div className="flex gap-1 justify-start items-center text-xs text-cinder-800 dark:text-cinder-500">
                     <span>{format(new Date(article.publishedAt), 'MMMM yyyy')}</span>
-                    <span>•</span>
+                    <span>&#10022;</span>
                     <span>{(article.readingTime > 0 ? article.readingTime.toString() : '1')+ ' min'}</span>
                     <ArticleViews slug={article.slug} trackView={false} />
                   </div>

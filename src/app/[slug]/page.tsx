@@ -50,7 +50,7 @@ export default function Article({ params } : { params: { slug: string } }) {
         <h1 className="text-cinder-800 font-medium dark:font-normal text-4xl dark:text-macaroni-and-cheese-300 font-ebgaramond">{article.title}</h1>
         <div className="flex gap-2 justify-start items-baseline text-sm text-cinder-800 dark:text-cinder-500">
           <span>{format(new Date(article.publishedAt), 'd MMMM yyyy')}</span>
-          <span>•</span>
+          <span>&#10022;</span>
           <span>{(article.readingTime > 0 ? article.readingTime.toString() : '1')+ ' minutes'}</span>
           <ArticleViews slug={article.slug} trackView={true} />
         </div>
