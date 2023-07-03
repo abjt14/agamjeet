@@ -46,7 +46,11 @@ export default function Stats() {
                   )}>
                     <span>Problems (downloads):</span>
                     <span className="text-macaroni-and-cheese-800 font-medium dark:text-cinder-300">
-                      <ArticleData slug={article.slug} type="downloads" downloadsType="problems" />
+                      {
+                        (article.category !== 'mock-test') || (article.category === 'mock-test' && !article.answerKey) ?
+                          'N/A' :
+                          <ArticleData slug={article.slug} type="downloads" downloadsType="problems" />
+                      }
                     </span>
                   </div>
                   <div className={clsx(
@@ -55,7 +59,11 @@ export default function Stats() {
                   )}>
                     <span>Answer Key (downloads):</span>
                     <span className="text-macaroni-and-cheese-800 font-medium dark:text-cinder-300">
-                      <ArticleData slug={article.slug} type="downloads" downloadsType="answer-key" />
+                      {
+                        (article.category !== 'mock-test') || (article.category === 'mock-test' && !article.answerKey) ?
+                          'N/A' :
+                          <ArticleData slug={article.slug} type="downloads" downloadsType="answer-key" />
+                      }
                     </span>
                   </div>
                 </div>
