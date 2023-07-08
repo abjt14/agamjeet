@@ -1,8 +1,9 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import remarkMath from 'remark-math';
+import remarkGfm from 'remark-gfm';
 
 export const Article = defineDocumentType(() => ({
   name: 'Article',
@@ -46,7 +47,7 @@ export default makeSource({
   contentDirPath: 'content',
   documentTypes: [Article],
   mdx: {
-    remarkPlugins: [remarkMath],
+    remarkPlugins: [remarkMath, remarkGfm],
     rehypePlugins: [
       rehypeSlug,
       rehypeKatex,
