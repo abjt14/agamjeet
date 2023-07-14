@@ -1,0 +1,61 @@
+/* table start */
+article table th, article table td {
+  @apply text-center p-2 border-x border-macaroni-and-cheese-300 dark:border-cinder-900 first:border-l-0 last:border-r-0;
+}
+
+article thead {
+  @apply bg-macaroni-and-cheese-100 border-macaroni-and-cheese-300 dark:bg-cinder-950 border-b dark:border-cinder-900;
+}
+/* table end */
+
+/* list start */
+article ul, article ol {
+  @apply list-[upper-roman] list-inside;
+}
+
+article li {
+  @apply text-base;
+}
+/* list end */
+
+/* headings start */
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6 {
+  @apply mt-4 relative left-3 w-[calc(100%-.75rem)] font-ebgaramond text-cinder-800 dark:text-macaroni-and-cheese-300 font-medium;
+  @apply before:content-[''] before:absolute before:-left-3 before:top-1/2 before:-translate-y-1/2 before:w-[.125rem] before:h-full before:rounded-md before:bg-cinder-800 dark:before:bg-macaroni-and-cheese-300;
+}
+
+article h1 {
+  @apply text-4xl;
+}
+
+article h2 {
+  @apply text-2xl;
+}
+
+article h3 {
+  @apply text-lg;
+}
+
+article h4 {
+  @apply text-sm;
+}
+
+article h5 {
+  @apply text-xs;
+}
+
+article h6 {
+  @apply text-xs;
+}
+/* headings end */
+
+/* strong start */
+article strong {
+  @apply font-semibold dark:font-medium text-cinder-800 dark:text-macaroni-and-cheese-300;
+}
+/* strong end */
