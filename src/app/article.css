@@ -1,4 +1,4 @@
-/* table start */
+/* TABLE START */
 article table th, article table td {
   @apply text-center p-2 border-x border-macaroni-and-cheese-300 dark:border-cinder-900 first:border-l-0 last:border-r-0;
 }
@@ -6,19 +6,37 @@ article table th, article table td {
 article thead {
   @apply bg-macaroni-and-cheese-100 border-macaroni-and-cheese-300 dark:bg-cinder-950 border-b dark:border-cinder-900;
 }
-/* table end */
+/* TABLE END */
 
-/* list start */
-article ul, article ol {
+
+/* LIST START */
+article ul {
+  @apply list-none list-inside;
+}
+
+article ul li {
+  @apply relative pl-6;
+}
+
+article ul li::after {
+  @apply absolute content-['\2727'] left-0.5 top-0.5 -translate-x-0.5 -translate-y-0.5;
+}
+
+article ul li ul li::after {
+  @apply brightness-50;
+}
+
+article ol {
   @apply list-[upper-roman] list-inside;
 }
 
 article li {
   @apply text-base;
 }
-/* list end */
+/* LIST END */
 
-/* headings start */
+
+/* HEADINGS START */
 article h1,
 article h2,
 article h3,
@@ -52,10 +70,11 @@ article h5 {
 article h6 {
   @apply text-xs;
 }
-/* headings end */
+/* HEADINGS END */
 
-/* strong start */
+
+/* STRONG START */
 article strong {
   @apply font-semibold dark:font-medium text-cinder-800 dark:text-macaroni-and-cheese-300;
 }
-/* strong end */
+/* STRONG END */
