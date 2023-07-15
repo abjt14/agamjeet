@@ -1064,7 +1064,7 @@ body {
   counter-reset: katexEqnNo mmlEqnNo;
 }
 
-/* katex custom start */
+/* KATEX CUSTOM START */
 @media (max-width: 768px) {
   .math-display > .katex-display > .katex {
     width: calc(100vw - 8rem);
@@ -1100,4 +1100,4 @@ body {
 .math.math-display .katex-display {
   padding: 1.5rem 1rem 1rem 1rem;
 }
-/* katex custom end */
+/* KATEX CUSTOM END */
