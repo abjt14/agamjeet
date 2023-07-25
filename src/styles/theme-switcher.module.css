@@ -1,0 +1,46 @@
+.themeSwitcher svg {
+  transition: clip-path .3s ease-in-out;
+}
+
+:global(:not(.dark)) .themeSwitcher svg {
+  clip-path: circle(50% at 50% 50%);
+}
+
+:global(.dark) .themeSwitcher svg {
+  clip-path: circle(22.5% at 50% 50%);
+}
+
+.fadein {
+  opacity: 0.001;
+  filter: blur(0rem);
+  animation: fade-in .5s ease both 850ms;
+  will-change: opacity, transform, filter;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0.001;
+    transform: translateY(-.25rem);
+    filter: blur(.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0rem);
+  }
+}
+
+@media screen and (640-width: 768px) {
+  @keyframes fade-in {
+    from {
+      opacity: 0.001;
+      transform: translateY(1rem);
+      filter: blur(.125rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0rem);
+    }
+  }
+}

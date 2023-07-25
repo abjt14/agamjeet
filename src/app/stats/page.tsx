@@ -3,20 +3,43 @@ import clsx from 'clsx';
 import { allArticles } from 'contentlayer/generated';
 import { format } from 'date-fns';
 import Link from 'next/link';
+import styles from './stats.module.css';
 
 export default function Stats() {
   return (
     <main className="flex flex-col items-start justify-between gap-8 w-full">
       <header className="text-left flex flex-col gap-4">
-        <h1 className="text-cinder-800 font-medium dark:font-normal dark:text-macaroni-and-cheese-300 text-4xl font-ebgaramond">Website Stats for Articles</h1>
-        <p className="sm:mb-8">This page shows the article statistics like publish date, reading time, views, and downloads for both the problems and answer key files.</p>
+        <h1 className={clsx(
+          "text-cinder-800 font-medium dark:font-normal dark:text-macaroni-and-cheese-300 text-4xl font-ebgaramond",
+          styles.fadein
+        )}>Website Stats for Articles</h1>
+        <p
+          className={clsx(
+            "sm:mb-8",
+            styles.fadein
+          )}
+          style={{
+            animationDelay: '100ms'
+          }}
+        >
+          This page shows the article statistics like publish date, reading time, views, and downloads for both the problems and answer key files.
+        </p>
       </header>
       <section className="grid grid-cols-1 sm:grid-cols-2 w-full gap-6 sm:gap-4">
           {
             allArticles
             .sort((a, b) => a.publishedAt > b.publishedAt ? -1 : 1)
             .map((article, index) => (
-              <li key={index} className="list-none p-6 rounded-md flex flex-col gap-4 border border-macaroni-and-cheese-300 bg-macaroni-and-cheese-50 dark:border-cinder-800 dark:bg-cinder-950">
+              <li
+                key={index}
+                className={clsx(
+                  "list-none p-6 rounded-md flex flex-col gap-4 border border-macaroni-and-cheese-300 bg-macaroni-and-cheese-50 dark:border-cinder-800 dark:bg-cinder-950",
+                  styles.fadein
+                )}
+                style={{
+                  animationDelay: `${(index + 1) * 100 + 100}ms`
+                }}
+              >
                 <Link
                   href={`/${article.slug}`}
                   className="text-cinder-800 font-semibold dark:font-medium sm:font-medium sm:dark:font-normal dark:text-macaroni-and-cheese-300 text-xl font-ebgaramond underline underline-offset-4 decoration-transparent hover:decoration-cinder-800 dark:hover:decoration-macaroni-and-cheese-300 transition-all duration-75"

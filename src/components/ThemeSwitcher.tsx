@@ -1,6 +1,6 @@
 'use client';
 
-import styles from '@/styles/ThemeSwitcher.module.css';
+import styles from '@/styles/theme-switcher.module.css';
 import clsx from 'clsx';
 
 export default function ThemeSwitcher() {
@@ -8,11 +8,12 @@ export default function ThemeSwitcher() {
     <button
       className={clsx(
         "p-2 hover:text-cinder-800 hover:dark:text-macaroni-and-cheese-300 transition-colors duration-150",
-        styles.themeSwitcher
+        styles.themeSwitcher,
+        styles.fadein
       )}
       onClick={() => {
-        document.documentElement.classList.toggle('dark')
-        window.localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+        document.documentElement.classList.toggle('dark');
+        window.localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
       }}
       aria-label="Toggle Color Mode"
     >

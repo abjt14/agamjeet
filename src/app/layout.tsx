@@ -82,9 +82,15 @@ export default function RootLayout({
         "min-h-screen max-w-screen-lg mx-auto flex gap-24 flex-col items-center justify-start p-6 pb-12 sm:p-12 lg:p-24",
         "text-macaroni-and-cheese-800 bg-macaroni-and-cheese-100 selection:bg-cinder-800 selection:text-macaroni-and-cheese-300 dark:text-cinder-300 dark:bg-cinder-950 leading-7 dark:selection:bg-macaroni-and-cheese-300 dark:selection:text-indigo-950"
       )}>
-        <Navigation />
-        {children}
-        <Footer />
+          <Navigation />
+          {children}
+          <Footer />
+        <div
+          className="absolute left-0 top-0 w-full h-full bg-repeat pointer-events-none z-50 opacity-75 dark:opacity-50 bg-[transparent_url('/noise.png')_repeat_0_0]"
+          style={{
+            background: "transparent url('/noise.png') repeat 0 0"
+          }}
+        />
       </body>
     </html>
   )

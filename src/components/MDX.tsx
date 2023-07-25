@@ -1,5 +1,7 @@
 import { useMDXComponent } from 'next-contentlayer/hooks';
 import type { MDXComponents } from 'mdx/types';
+import styles from '@/styles/mdx.module.css';
+import clsx from 'clsx';
 
 interface MDXProps {
   code: string;
@@ -14,7 +16,10 @@ export default function MDX({ code }: MDXProps) {
   const MDXContent = useMDXComponent(code);
 
   return (
-    <article className="flex flex-col gap-4">
+    <article className={clsx(
+      "flex flex-col gap-4",
+      styles.fadein
+    )}>
       <MDXContent components={mdxComponents} />
     </article>
   )
