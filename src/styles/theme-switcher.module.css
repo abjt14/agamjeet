@@ -2,12 +2,14 @@
   transition: clip-path .3s ease-in-out;
 }
 
-:global(:not(.dark)) .themeSwitcher svg {
+.themeSwitcher svg {
   clip-path: circle(50% at 50% 50%);
 }
 
-:global(.dark) .themeSwitcher svg {
-  clip-path: circle(22.5% at 50% 50%);
+@media (prefers-color-scheme: dark) {
+  .themeSwitcher svg {
+    clip-path: circle(22.5% at 50% 50%);
+  }
 }
 
 .fadein {

@@ -67,8 +67,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark font-sans relative">
-      <Script id="set-theme">
+    <html lang="en" className=" font-sans relative">
+      {/* <Script id="set-theme">
         {`
           if (window.localStorage.theme === 'dark' || (!('theme' in window.localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark')
@@ -76,7 +76,7 @@ export default function RootLayout({
             document.documentElement.classList.remove('dark')
           }
         `}
-      </Script>
+      </Script> */}
       <body className={clsx(
         eb_garamond.variable,
         "min-h-screen max-w-screen-lg mx-auto flex gap-24 flex-col items-center justify-start p-6 pb-12 sm:p-12 lg:p-24",

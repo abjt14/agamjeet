@@ -69,7 +69,7 @@ export default function Navigation() {
           )
         }
       </div>
-      <ThemeSwitcher />
+      {/* <ThemeSwitcher /> */}
     </nav>
   )
 }
