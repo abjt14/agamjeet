@@ -55,7 +55,7 @@ export default function Home() {
                     <span>{format(new Date(article.publishedAt), 'MMMM yyyy')}</span>
                     <span>&#10022;</span>
                     <span>{(article.readingTime > 0 ? article.readingTime.toString() : '1')+ ' min'}</span>
-                    {/* <ArticleViews slug={article.slug} trackView={false} /> */}
+                    <ArticleViews slug={article.slug} trackView={false} />
                   </div>
                 </Link>
               </li>

@@ -61,13 +61,13 @@ export default function Article({ params } : { params: { slug: string } }) {
           <span>{format(new Date(article.publishedAt), 'd MMMM yyyy')}</span>
           <span>&#10022;</span>
           <span>{(article.readingTime > 0 ? article.readingTime.toString() : '1')+ ' minutes'}</span>
-          {/* <ArticleViews slug={article.slug} trackView={true} /> */}
+          <ArticleViews slug={article.slug} trackView={true} />
         </div>
       </div>
       {
         article.category === 'mock-test' && (
           <div
-            className="fade-in flex flex-col gap-4 p-4 rounded-md border border-macaroni-and-cheese-300 bg-macaroni-and-cheese-50 dark:bg-cinder-950"
+            className="fade-in flex flex-col gap-4 p-4 rounded-lg border border-macaroni-and-cheese-300 bg-macaroni-and-cheese-50 dark:bg-cinder-950"
             style={{
               animationDelay: "200ms"
             }}
