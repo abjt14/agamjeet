@@ -14,7 +14,12 @@ export default function MDX({ code }: MDXProps) {
   const MDXContent = useMDXComponent(code);
 
   return (
-    <article className="flex flex-col gap-4">
+    <article
+      className="fade-in flex flex-col gap-4"
+      style={{
+        animationDelay: '300ms'
+      }}
+    >
       <MDXContent components={mdxComponents} />
     </article>
   )

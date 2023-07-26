@@ -47,8 +47,17 @@ export default function Article({ params } : { params: { slug: string } }) {
   return (
     <section className="flex flex-col items-start justify-between gap-8 w-full">
       <div className="flex flex-col gap-4 sm:gap-2">
-        <h1 className="text-cinder-800 font-medium dark:font-normal text-4xl dark:text-macaroni-and-cheese-300 font-ebgaramond">{article.title}</h1>
-        <div className="flex gap-2 justify-start items-baseline text-sm text-cinder-800 dark:text-cinder-500">
+        <h1
+          className="fade-in text-cinder-800 font-medium dark:font-normal text-4xl dark:text-macaroni-and-cheese-300 font-ebgaramond"
+        >
+          {article.title}
+        </h1>
+        <div
+          className="fade-in flex gap-2 justify-start items-baseline text-sm text-cinder-800 dark:text-cinder-500"
+          style={{
+            animationDelay: "100ms"
+          }}
+        >
           <span>{format(new Date(article.publishedAt), 'd MMMM yyyy')}</span>
           <span>&#10022;</span>
           <span>{(article.readingTime > 0 ? article.readingTime.toString() : '1')+ ' minutes'}</span>
@@ -57,7 +66,12 @@ export default function Article({ params } : { params: { slug: string } }) {
       </div>
       {
         article.category === 'mock-test' && (
-          <div className="flex flex-col gap-4 p-4 rounded-md border border-macaroni-and-cheese-300 bg-macaroni-and-cheese-50 dark:bg-cinder-950">
+          <div
+            className="fade-in flex flex-col gap-4 p-4 rounded-lg border border-macaroni-and-cheese-300 bg-macaroni-and-cheese-50 dark:bg-cinder-950"
+            style={{
+              animationDelay: "200ms"
+            }}
+          >
             <h2 className="flex gap-2 justify-start items-center text-cinder-800 dark:text-macaroni-and-cheese-300 font-medium dark:font-normal">
               This article contains spoilers for the mock test.
             </h2>

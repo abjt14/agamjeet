@@ -42,7 +42,8 @@ export default function DownloadButton({ type, slug }: DownloadButtonProps) {
         before:h-full
         before:w-full
         before:transition-transform
-        before:duration-300
+        before:duration-500
+        before:ease-easeInOutExpo
         group-hover:before:translate-y-full
 
         after:content-['↓']
@@ -54,7 +55,8 @@ export default function DownloadButton({ type, slug }: DownloadButtonProps) {
         after:h-full
         after:w-full
         after:transition-transform
-        after:duration-300
+        after:duration-500
+        after:ease-easeInOutExpo
         group-hover:after:-translate-y-1/2
       ">
         <span className="text-transparent">↓</span>

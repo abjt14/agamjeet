@@ -1,18 +1,40 @@
 'use client';
 
-import styles from '@/styles/ThemeSwitcher.module.css';
+import styles from '@/styles/theme-switcher.module.css';
 import clsx from 'clsx';
 
 export default function ThemeSwitcher() {
   return (
     <button
       className={clsx(
-        "p-2 hover:text-cinder-800 hover:dark:text-macaroni-and-cheese-300 transition-colors duration-150",
-        styles.themeSwitcher
+        "fade-in-small p-2 hover:text-cinder-800 hover:dark:text-macaroni-and-cheese-300 transition-colors duration-150",
+        styles.themeSwitcher,
       )}
+      style={{
+        animationDelay: '850ms'
+      }}
       onClick={() => {
-        document.documentElement.classList.toggle('dark')
-        window.localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+        const css = document.createElement('style');
+        css.type = 'text/css';
+        css.appendChild(
+          document.createTextNode(
+            `* {
+              -webkit-transition: none !important;
+              -moz-transition: none !important;
+              -o-transition: none !important;
+              -ms-transition: none !important;
+              transition: none !important;
+            }`
+          )
+        );
+        document.head.appendChild(css);
+
+        document.documentElement.classList.toggle('dark');
+        window.localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+
+        // Calling getComputedStyle forces the browser to redraw
+        const _ = window.getComputedStyle(css).opacity;
+        document.head.removeChild(css);
       }}
       aria-label="Toggle Color Mode"
     >

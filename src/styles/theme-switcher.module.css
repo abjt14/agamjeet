@@ -1,0 +1,13 @@
+.themeSwitcher svg {
+  transition: clip-path .3s ease-in-out;
+}
+
+.themeSwitcher svg {
+  clip-path: circle(50% at 50% 50%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .themeSwitcher svg {
+    clip-path: circle(22.5% at 50% 50%);
+  }
+}
