@@ -37,10 +37,7 @@ export default function Navigation() {
               <Link
                 key={index}
                 href={link.href}
-                className={clsx(
-                  "hover:text-cinder-800 hover:dark:text-macaroni-and-cheese-300 transition-colors duration-150",
-                  styles.fadein
-                )}
+                className="fade-in-small hover:text-cinder-800 hover:dark:text-macaroni-and-cheese-300 transition-colors duration-150"
                 style={{
                   animationDelay: `${(index + 1)*100 + 450}ms`
                 }}
@@ -52,10 +49,7 @@ export default function Navigation() {
                 key={index}
                 href={link.href}
                 target="_blank"
-                className={clsx(
-                  "flex justify-between items-center gap-1 hover:text-cinder-800 hover:dark:text-macaroni-and-cheese-300 transition-colors duration-150",
-                  styles.fadein
-                )}
+                className="fade-in-small flex justify-between items-center gap-1 hover:text-cinder-800 hover:dark:text-macaroni-and-cheese-300 transition-colors duration-150"
                 style={{
                   animationDelay: `${(index + 1)*100 + 450}ms`
                 }}

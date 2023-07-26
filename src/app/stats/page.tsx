@@ -3,21 +3,14 @@ import clsx from 'clsx';
 import { allArticles } from 'contentlayer/generated';
 import { format } from 'date-fns';
 import Link from 'next/link';
-import styles from './stats.module.css';
 
 export default function Stats() {
   return (
     <main className="flex flex-col items-start justify-between gap-8 w-full">
       <header className="text-left flex flex-col gap-4">
-        <h1 className={clsx(
-          "text-cinder-800 font-medium dark:font-normal dark:text-macaroni-and-cheese-300 text-4xl font-ebgaramond",
-          styles.fadein
-        )}>Website Stats for Articles</h1>
+        <h1 className="fade-in text-cinder-800 font-medium dark:font-normal dark:text-macaroni-and-cheese-300 text-4xl font-ebgaramond">Website Stats for Articles</h1>
         <p
-          className={clsx(
-            "sm:mb-8",
-            styles.fadein
-          )}
+          className="fade-in sm:mb-8"
           style={{
             animationDelay: '100ms'
           }}
@@ -32,10 +25,7 @@ export default function Stats() {
             .map((article, index) => (
               <li
                 key={index}
-                className={clsx(
-                  "list-none p-6 rounded-md flex flex-col gap-4 border border-macaroni-and-cheese-300 bg-macaroni-and-cheese-50 dark:border-cinder-800 dark:bg-cinder-950",
-                  styles.fadein
-                )}
+                className="fade-in list-none p-6 rounded-md flex flex-col gap-4 border border-macaroni-and-cheese-300 bg-macaroni-and-cheese-50 dark:border-cinder-800 dark:bg-cinder-950"
                 style={{
                   animationDelay: `${(index + 1) * 100 + 100}ms`
                 }}

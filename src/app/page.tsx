@@ -3,22 +3,18 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import { format } from 'date-fns';
 import ArticleViews from '@/components/ArticleViews';
-import styles from './home.module.css';
 
 export default function Home() {
   return (
     <main className="flex flex-col items-start justify-between gap-24 w-full">
       <header className="text-left flex flex-col gap-4">
         <h1
-          className={clsx(
-            "text-cinder-800 font-medium dark:font-normal dark:text-macaroni-and-cheese-300 text-4xl font-ebgaramond mb-4",
-            styles.fadein
-          )}
+          className="fade-in text-cinder-800 font-medium dark:font-normal dark:text-macaroni-and-cheese-300 text-4xl font-ebgaramond mb-4"
         >
           Agamjeet Singh
         </h1>
         <p
-          className={styles.fadein}
+          className="fade-in"
           style={{
             animationDelay: '100ms'
           }}
@@ -26,7 +22,7 @@ export default function Home() {
           I find mathematics to be very intriguing and am constantly discovering new ideas, learning new things, and expanding my arsenal. I enjoy solving olympiad math and collecting intricate problems. I have also built a positive community on discord for people to learn, discuss, and collaborate.
         </p>
         <p
-          className={styles.fadein}
+          className="fade-in"
           style={{
             animationDelay: '200ms'
           }}
@@ -42,7 +38,7 @@ export default function Home() {
             .map((article, index) => (
               <li
                 key={index}
-                className={styles.fadein}
+                className="fade-in"
                 style={{
                   animationDelay: `${(index + 1)*100 + 200}ms`
                 }}
@@ -59,7 +55,7 @@ export default function Home() {
                     <span>{format(new Date(article.publishedAt), 'MMMM yyyy')}</span>
                     <span>&#10022;</span>
                     <span>{(article.readingTime > 0 ? article.readingTime.toString() : '1')+ ' min'}</span>
-                    <ArticleViews slug={article.slug} trackView={false} />
+                    {/* <ArticleViews slug={article.slug} trackView={false} /> */}
                   </div>
                 </Link>
               </li>

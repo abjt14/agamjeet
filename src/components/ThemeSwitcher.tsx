@@ -7,10 +7,12 @@ export default function ThemeSwitcher() {
   return (
     <button
       className={clsx(
-        "p-2 hover:text-cinder-800 hover:dark:text-macaroni-and-cheese-300 transition-colors duration-150",
+        "fade-in-small p-2 hover:text-cinder-800 hover:dark:text-macaroni-and-cheese-300 transition-colors duration-150",
         styles.themeSwitcher,
-        styles.fadein
       )}
+      style={{
+        animationDelay: '850ms'
+      }}
       onClick={() => {
         const css = document.createElement('style');
         css.type = 'text/css';
