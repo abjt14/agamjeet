@@ -29,7 +29,7 @@ export default function Stats() {
                 key={index}
                 className="fade-in list-none p-6 rounded-md flex flex-col gap-4 border border-macaroni-and-cheese-300 bg-macaroni-and-cheese-50 dark:border-cinder-800 dark:bg-cinder-950"
                 style={{
-                  animationDelay: `${(index + 1) * 100 + 200}ms`
+                  animationDelay: `${(index + 1) * 100 + 100}ms`
                 }}
               >
                 <Link
