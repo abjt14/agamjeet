@@ -5,14 +5,14 @@ import { useEffect, useState } from "react";
 export default function ArticleData({ slug, type, downloadsType }: {
   slug: string,
   type: 'views' | 'downloads',
-  downloadsType?: 'problems' | 'answer-key',
+  downloadsType?: 'problems' | 'answer-key' | 'any',
 }) {
   const [data, setData] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    if (type === 'downloads' && downloadsType) {
-      fetch(`/api/${type}?slug=${slug}&type=${downloadsType}`, {
+    if (type === 'downloads') {
+      fetch(`/api/${type}?slug=${slug}&type=${downloadsType === 'any' ? '' : downloadsType}`, {
         method: 'GET',
       })
       .then((res) => res.json())

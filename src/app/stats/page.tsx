@@ -7,16 +7,18 @@ import Link from 'next/link';
 export default function Stats() {
   return (
     <main className="flex flex-col items-start justify-between gap-8 w-full">
-      <header className="text-left flex flex-col gap-4">
-        <h1 className="fade-in text-cinder-800 font-medium dark:font-normal dark:text-macaroni-and-cheese-300 text-4xl font-ebgaramond">Website Stats for Articles</h1>
-        <p
-          className="fade-in sm:mb-8"
+      <header className="text-left flex flex-col gap-2">
+        <h1 className="fade-in text-cinder-800 font-medium dark:font-normal dark:text-macaroni-and-cheese-300 text-4xl font-ebgaramond">Blog Metadata & Statistics</h1>
+        <div
+          className="fade-in flex gap-2 justify-start items-baseline text-sm text-macaroni-and-cheese-800 dark:text-cinder-500"
           style={{
-            animationDelay: '100ms'
+            animationDelay: "100ms"
           }}
         >
-          This page shows the article statistics like publish date, reading time, views, and downloads for both the problems and answer key files.
-        </p>
+          <><ArticleData type={"views"} slug='' /> views</>
+          <span>&#10022;</span>
+          <><ArticleData type={"downloads"} slug='' downloadsType='any' /> downloads</>
+        </div>
       </header>
       <section className="grid grid-cols-1 sm:grid-cols-2 w-full gap-6 sm:gap-4">
           {
@@ -27,7 +29,7 @@ export default function Stats() {
                 key={index}
                 className="fade-in list-none p-6 rounded-md flex flex-col gap-4 border border-macaroni-and-cheese-300 bg-macaroni-and-cheese-50 dark:border-cinder-800 dark:bg-cinder-950"
                 style={{
-                  animationDelay: `${(index + 1) * 100 + 100}ms`
+                  animationDelay: `${(index + 1) * 100 + 200}ms`
                 }}
               >
                 <Link

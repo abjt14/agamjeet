@@ -10,11 +10,23 @@ export async function GET(
     const slug = req.nextUrl.searchParams.get('slug');
     const type = req.nextUrl.searchParams.get('type');
 
-    if (!slug) {
+    console.log('slug', slug);
+    console.log('type', type);
+
+    if (slug === '' && !type) {
+      const totalDownloads = await prisma.downloads.aggregate({
+        _sum: {
+          count: true
+        }
+      });
+
+      console.log('totalDownloads', totalDownloads);
+
       return NextResponse.json({
-        message: 'Article slug is required.'
+        downloads: totalDownloads?._sum?.count ?? 0,
+        type
       },{
-        status: 500
+        status: 200
       })
     }
 
@@ -29,7 +41,7 @@ export async function GET(
     const downloads = await prisma.downloads.findUnique({
       where: {
         downloadsId: {
-          articleSlug: slug,
+          articleSlug: slug as string,
           type: type === 'problems' ? 1 : 2
         }
       },

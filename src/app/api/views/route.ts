@@ -9,17 +9,23 @@ export async function GET(
   try {
     const slug = req.nextUrl.searchParams.get('slug');
 
-    if (!slug) {
+    if (slug === '') {
+      const totalViews = await prisma.views.aggregate({
+        _sum: {
+          count: true
+        }
+      });
+
       return NextResponse.json({
-        message: 'Article slug is required.'
+        views: totalViews?._sum?.count ?? 0
       },{
-        status: 500
+        status: 200
       })
     }
 
     const views = await prisma.views.findUnique({
       where: {
-        articleSlug: slug
+        articleSlug: slug as string
       },
       select: {
         count: true

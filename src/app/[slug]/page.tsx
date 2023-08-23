@@ -46,14 +46,14 @@ export default function Article({ params } : { params: { slug: string } }) {
 
   return (
     <section className="flex flex-col items-start justify-between gap-8 w-full">
-      <div className="flex flex-col gap-4 sm:gap-2">
+      <div className="flex flex-col gap-2">
         <h1
           className="fade-in text-cinder-800 font-medium dark:font-normal text-4xl dark:text-macaroni-and-cheese-300 font-ebgaramond"
         >
           {article.title}
         </h1>
         <div
-          className="fade-in flex gap-2 justify-start items-baseline text-sm text-cinder-800 dark:text-cinder-500"
+          className="fade-in flex gap-2 justify-start items-baseline text-sm text-macaroni-and-cheese-800 dark:text-cinder-500"
           style={{
             animationDelay: "100ms"
           }}
