@@ -22,6 +22,11 @@ export default function Navigation() {
       type: "internal",
     },
     {
+      name: "site stats",
+      href: "/stats",
+      type: "internal",
+    },
+    {
       name: "linkedin",
       href: "https://www.linkedin.com/in/agamjeet-singh/",
       type: "external",
