@@ -34,7 +34,7 @@ export default function Navigation() {
   ];
 
   return(
-    <nav className="w-full flex gap-4 justify-between items-center">
+    <nav className="w-full flex gap-4 justify-between sm:justify-start items-center">
       {
         links.map((link, index) =>
           link.type === "internal" ? (
