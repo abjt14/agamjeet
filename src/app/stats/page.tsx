@@ -62,7 +62,7 @@ export default function Stats() {
                     <span>Problems (downloads):</span>
                     <span className="text-macaroni-and-cheese-800 font-medium dark:text-cinder-300">
                       {
-                        (article.category !== 'mock-test') || (article.category === 'mock-test' && !article.answerKey) ?
+                        article.category !== 'mock-test' ?
                           'N/A' :
                           <ArticleData slug={article.slug} type="downloads" downloadsType="problems" />
                       }
