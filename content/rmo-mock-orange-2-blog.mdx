@@ -10,11 +10,18 @@ This is the second RMO Mock test from MOMC Season 2. All the credit and authorsh
 
 Sticking to my usual, I will be discussing the solutions of the problems along with how I motivated them. So if you are planning to attempt the mock, beware of the spoilers ahead!
 
-**Problem 1** ([Simon Marais 2017 A2](https://artofproblemsolving.com/community/c6h2544554p21709265)) Let $a_1,a_2,a_3,\ldots$ be the sequence of real numbers deﬁned by $a_1=1$ and$$a_m=\frac1{a_1^2+a_2^2+\ldots+a_{m-1}^2}\qquad\text{for }m\ge2.$$Determine whether there exists a positive integer $N$ such that
-$$a_1+a_2+\ldots+a_N>2023^{2023}.$$
+**Problem 1** ([Simon Marais 2017 A2](https://artofproblemsolving.com/community/c6h2544554p21709265)) Let $a_1,a_2,a_3,\ldots$ be the sequence of real numbers deﬁned by $a_1=1$ and
+$$
+a_m=\frac1{a_1^2+a_2^2+\ldots+a_{m-1}^2}\qquad\text{for }m\ge2.
+$$Determine whether there exists a positive integer $N$ such that
+$$
+a_1+a_2+\ldots+a_N>2023^{2023}.
+$$
 
 **Solution:** Suppose for the sake of contradiction that the sum of the sequence was bounded. Thus there doesn't exist a constant $c$ such that $a_i \geq c$ for all $i$. Hence $a_i \rightarrow 0$ as $i \rightarrow \infty$. Now we could relate $\sum a_i$ with $\sum a_i^2$ if $0 < a_m \leq 1$ or $a_m \geq 1$ for all $m$. The former luckily holds as $a_1^2 + a_2^2 + \dots + a_{m-1}^2 \geq a_1^2 = 1 \implies a_m \leq 1$. Hence:
-$$a_1 + a_2 + \dots + a_N \geq a_1^2 + a_2^2 + \dots + a_N^2 = \frac{1}{a_{N+1}} \rightarrow \infty$$
+$$
+a_1 + a_2 + \dots + a_N \geq a_1^2 + a_2^2 + \dots + a_N^2 = \frac{1}{a_{N+1}} \rightarrow \infty
+$$
 A contradiction!
 
 **Problem 2** ([China Northern Mathematical Olympiad 2020 P4](https://artofproblemsolving.com/community/c6h2220889p16882243)) In $\triangle ABC$, $\angle BAC = 60^{\circ}$, point $D$ lies on side $BC$, $O_1$ and $O_2$ are the centers of the circumcircles of $\triangle ABD$ and $\triangle ACD$, respectively. Lines $BO_1$ and $CO_2$ intersect at point $P$. If $I$ is the incenter of $\triangle ABC$ and $H$ is the orthocenter of $\triangle PBC$, then prove that the four points $B,C,I,H$ are on the same circle.
@@ -27,7 +34,9 @@ A contradiction!
 **Solution:** Let $M$ be the maximum number of elements in $Q$. For each permutation, there exist exactly $99$ consecutive pairs of numbers. So, there are $99M$ total pairs. Each consecutive pair of numbers appears exactly once. Hence $99M \leq 99\cdot 100$ as there are $99 \cdot 100$ total possible pairs of consecutive integers in a permutation. Therefore $M \leq 100$. It remains to show that a construction exists.
 
 Consider a $100 \times 100$ matrix where each row represents a permutation of $1,2, \dots 100$. Initially, all elements of the first row are $1$, all elements of the second row are $2$ and so on. We cycle upwards, the $k^{\text{th}}$ column other than the first one, by $t_k$ units relative to the $k-1^{\text{th}}$ column. It suffices to find **distinct** positive integers $t_k$ for $2 \leq k \leq 100$ such that the sum of any contiguous sum of $t_k$ isn't divisible by $100$. The following sequence works:
-$$1,98,3,96,5,94, \cdots , 97,2,99$$
+$$
+1,98,3,96,5,94, \cdots , 97,2,99
+$$
 
 
 **Problem 4** ([Austrian Math Olympiad 2006 P4](https://artofproblemsolving.com/community/c6h257028p1402126)) The function $f: \mathbb{R} \rightarrow \mathbb{R}$ is defined as $f(x) = \lfloor x^2 \rfloor + \{ x \}$. Call a real number *regional* if it doesn't lie in the range of $f$. Show that there exists an infinite arithmetic progression of distinct regional positive rational numbers, which all have denominator $3$ when written in lowest form.
@@ -41,7 +50,9 @@ $$1,98,3,96,5,94, \cdots , 97,2,99$$
 
 
 **Problem 6** ([Hong Kong National Olympiad 2013 P1](https://artofproblemsolving.com/community/c6h567387p3324611)) Let $a,b,c$ be positive real numbers such that $ab+bc+ca=1$. Prove that
-$$\sqrt[4]{\frac{\sqrt{3}}{a}+6\sqrt{3}b}+\sqrt[4]{\frac{\sqrt{3}}{b}+6\sqrt{3}c}+\sqrt[4]{\frac{\sqrt{3}}{c}+6\sqrt{3}a}\le\frac{1}{abc}$$
+$$
+\sqrt[4]{\frac{\sqrt{3}}{a}+6\sqrt{3}b}+\sqrt[4]{\frac{\sqrt{3}}{b}+6\sqrt{3}c}+\sqrt[4]{\frac{\sqrt{3}}{c}+6\sqrt{3}a}\le\frac{1}{abc}
+$$
 
 **Solution:** Check out the solution of this inequality [here](https://artofproblemsolving.com/community/c6h567387p3324671).
 
