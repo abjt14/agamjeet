@@ -1,0 +1,68 @@
+--- 
+title: 'RMO 2023 Orange Mock Three'
+publishedAt: '2023-10-26'
+summary: 'Sharing the final mock test for RMO 2023 and the solutions of all the problems'
+category: 'mock-test'
+answerKey: false
+---
+
+This is the third and final RMO 2023 Mock test from MOMC Season 2. All the credit and authorship of the problems belongs to their respective sources.
+
+As early-action college deadlines are nearing, I won't be able to get a proper look at the RMO 2023 problems. But I wish you all the best of luck!
+
+Following my typical approach, I will be discussing the solutions of the problems along with how I motivated them. So if you are planning to attempt the mock, beware of the spoilers ahead!
+
+**Problem 1** ([Dutch BxMO TST 2018 P2](https://artofproblemsolving.com/community/c6h1887617p12867749)) Let $\triangle ABC$ be a triangle of which the side lengths are positive integers which are pairwise coprime. The tangent in $A$ to the circumcircle intersects line $BC$ in $D$. Prove that $BD$ is not an integer.
+
+**Solution:** This problem entails some trigonometric calculation. The key is to have faith that spamming sine rule and cosine rule will result in something manageable at the end. Without loss of generality let $AB < AC$. By using the tangency, see that $\angle DAB = \angle ACB$. Now Sine rule in $\triangle ABD$ and $\triangle ABC$ together implies 
+$$
+\frac{BD}{\sin C} = \frac{AB}{\sin (B-C)} \implies BD = \frac{AB \sin C}{\sin (B-C)} = \frac{AB \sin C}{\sin B \cos C - \sin C \cos B} = \frac{AB}{\frac{ \sin B }{\sin C} \cos C - \cos B}
+$$
+Now writing $\frac{\sin B}{\sin C} = \frac{AC}{AB}$ (by Sine rule), applying cosine rule to evaluate $\cos C$ and $\cos B$ and simplifying the expression yields that $BD = \frac{BC \cdot AB^2}{AC^2-AB^2} = \frac{a c^2}{b^2-c^2}$.
+Suppose for the sake of contradiction that $BD$ is an integer. Then $b^2-c^2 \mid ac^2$. If $p$ is a prime such that $p$ divides $b^2-c^2$ then if $p$ divides $c^2$ then $p$ divides $b^2$ which is a contradiction to the fact $b,c$ are coprime. Hence $b^2-c^2 \mid a$, so $b^2-c^2 \leq a < b +c \implies b -c < 1$, impossible. Here we have used the triangle inequality.
+
+
+**Problem 2** ([Japan](https://artofproblemsolving.com/community/c6h23649p150539)) Prove that there doesn't exist any positive integer $n$ such that $2n^2+1,3n^2+1$ and $6n^2+1$ are perfect squares.
+
+**Solution:** The key idea is to multiply different perfect squares so that their resulting difference is $1$:
+$$
+(3n^2+1)(6n^2+1) - (3n)^2(2n^2+1) = 1
+$$
+They only two consecutive perfect squares are $0$ and $1$, which would imply $n=0$, a contradiction!
+
+Bonus Solution: I accidentally stumbled upon this solution as I was looking for perfect squares of difference $1$:
+$$
+(2n^2+1)(6n^2+1) - (2n)^2(3n^2+1) = 4n^2+1
+$$
+Observing closely we realise that the difference of two perfect squares can't be $1 \pmod 4$, a contradiction!
+
+**Problem 3** ([Swiss TST 2023 P7](https://artofproblemsolving.com/community/c6h3151914p28632221)) Find all monic polynomials $P(x)=x^{2023}+a_{2022}x^{2022}+\ldots+a_1x+a_0$ with real coefficients such that $a_{2022}=0$, $P(1)=1$ and all roots of $P$ are real and less than $1$.
+
+**Solution:** Upon inspection, $x^{2023}$ seems to be the only trivial solution. Let the roots be $y_1,y_2, \cdots y_{2023}$. We are given that $\sum y_i = 0$, $\prod (1-y_i) = 1$ and $y_i < 1$. Therefore $1-y_i > 0$. Applying AM-GM over the product gives:
+$$
+\frac{2023-\sum y_i}{2023} \geq \left ( \prod (1-y_i) \right)^{\frac{1}{2023}} = 1
+$$
+As $\sum y_i = 0$, equality holds and so all the roots are equal. Therefore $(1-y_1)^{2023} = 1 \implies y_1 = 0 \implies P(x) = x^{2023}$. We are done!
+
+**Problem 4** ([Singapore TST 2004](https://artofproblemsolving.com/community/c6h5644p18401)) Let $0 < a, b, c < 1$ with $ab + bc + ca = 1$. Prove that 
+$$
+\frac{a}{1-a^2} + \frac{b}{1-b^2} + \frac{c}{1-c^2} \geq \frac {3 \sqrt{3}}{2}.
+$$
+Determine when equality holds.
+
+**Solution:** For this problem, there exist a lot of solutions which use Jensen's Inequality. I would advise against using it unless you can write the proof of Jensen during the exam. Here, we provide a different solution. As $a^2 + b^2 + c^2 \geq ab + bc + ca = 1$, we can wish that maybe $\frac{a}{1-a^2} \geq \frac{3\sqrt{3}a^2}{2}$ will hold. This is fortunately the case as:
+$$
+\frac{a}{1-a^2} \geq \frac{3\sqrt{3}a^2}{2} \iff a(1-a^2) \leq \frac{2}{3\sqrt{3}} 
+$$
+We can differentiate to find that this is true and equality holds at $a=b=c = \frac{1}{\sqrt{3}}$.
+
+**Problem 5** ([Benelux 2019 P3](https://artofproblemsolving.com/community/c6h1829780p12248262)) Two circles $\Gamma_1$ and $\Gamma_2$ intersect at points $A$ and $Z$ (with $A\neq Z$). Let $B$ be the centre of $\Gamma_1$ and let $C$ be the centre of $\Gamma_2$. The exterior angle bisector of $\angle{BAC}$ intersects $\Gamma_1$ again at $X$ and $\Gamma_2$ again at $Y$. Prove that the interior angle bisector of $\angle{BZC}$ passes through the circumcenter of $\triangle{XYZ}$.
+
+**Solution:** Check out the solution of this problem [here](https://artofproblemsolving.com/community/c6h1829780p27300326).
+
+
+**Problem 6** ([2007 Peru Iberoamerican TST P2](https://artofproblemsolving.com/community/c6h3068431p27691386)) Find all positive integers $m$ and $n$ that satisfy the equality: 
+$$
+n^5+n^4=7^m-1
+$$
+**Solution:** The hard step is to factorise $n^5+n^4+1$ into $(n^3-n+1)(n^2+n+1)$. By using the euclidean algorithm we can deduce that $\gcd(n^3-n+1, n^2+n+1) = \gcd(n-2,7) \in \{1,7\}$. We conclude that $n=2$ and $m=2$ is the only solution.
