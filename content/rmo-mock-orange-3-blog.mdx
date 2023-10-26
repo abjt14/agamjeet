@@ -15,7 +15,8 @@ Following my typical approach, I will be discussing the solutions of the problem
 **Problem 1** ([Dutch BxMO TST 2018 P2](https://artofproblemsolving.com/community/c6h1887617p12867749)) Let $\triangle ABC$ be a triangle of which the side lengths are positive integers which are pairwise coprime. The tangent in $A$ to the circumcircle intersects line $BC$ in $D$. Prove that $BD$ is not an integer.
 
 **Solution:** This problem entails some trigonometric calculation. The key is to have faith that spamming sine rule and cosine rule will result in something manageable at the end. Without loss of generality let $AB < AC$. By using the tangency, see that $\angle DAB = \angle ACB$. Now Sine rule in $\triangle ABD$ and $\triangle ABC$ together implies 
-$$\frac{BD}{\sin C} = \frac{AB}{\sin (B-C)} \implies BD = \frac{AB \sin C}{\sin (B-C)} = \frac{AB \sin C}{\sin B \cos C - \sin C \cos B} = \frac{AB}{\frac{ \sin B }{\sin C} \cos C - \cos B}
+$$
+\frac{BD}{\sin C} = \frac{AB}{\sin (B-C)} \implies BD = \frac{AB \sin C}{\sin (B-C)} = \frac{AB \sin C}{\sin B \cos C - \sin C \cos B} = \frac{AB}{\frac{ \sin B }{\sin C} \cos C - \cos B}
 $$
 Now writing $\frac{\sin B}{\sin C} = \frac{AC}{AB}$ (by Sine rule), applying cosine rule to evaluate $\cos C$ and $\cos B$ and simplifying the expression yields that $BD = \frac{BC \cdot AB^2}{AC^2-AB^2} = \frac{a c^2}{b^2-c^2}$.
 Suppose for the sake of contradiction that $BD$ is an integer. Then $b^2-c^2 \mid ac^2$. If $p$ is a prime such that $p$ divides $b^2-c^2$ then if $p$ divides $c^2$ then $p$ divides $b^2$ which is a contradiction to the fact $b,c$ are coprime. Hence $b^2-c^2 \mid a$, so $b^2-c^2 \leq a < b +c \implies b -c < 1$, impossible. Here we have used the triangle inequality.
@@ -46,8 +47,7 @@ As $\sum y_i = 0$, equality holds and so all the roots are equal. Therefore $(1-
 **Problem 4** ([Singapore TST 2004](https://artofproblemsolving.com/community/c6h5644p18401)) Let $0 < a, b, c < 1$ with $ab + bc + ca = 1$. Prove that 
 $$
 \frac{a}{1-a^2} + \frac{b}{1-b^2} + \frac{c}{1-c^2} \geq \frac {3 \sqrt{3}}{2}.
-$$
-Determine when equality holds.
+$$Determine when equality holds.
 
 **Solution:** For this problem, there exist a lot of solutions which use Jensen's Inequality. I would advise against using it unless you can write the proof of Jensen during the exam. Here, we provide a different solution. As $a^2 + b^2 + c^2 \geq ab + bc + ca = 1$, we can wish that maybe $\frac{a}{1-a^2} \geq \frac{3\sqrt{3}a^2}{2}$ will hold. This is fortunately the case as:
 $$
@@ -60,7 +60,8 @@ We can differentiate to find that this is true and equality holds at $a=b=c = \f
 **Solution:** Check out the solution of this problem [here](https://artofproblemsolving.com/community/c6h1829780p27300326).
 
 
-**Problem 6** ([2007 Peru Iberoamerican TST P2](https://artofproblemsolving.com/community/c6h3068431p27691386)) Find all positive integers $m$ and $n$ that satisfy the equality: $$
+**Problem 6** ([2007 Peru Iberoamerican TST P2](https://artofproblemsolving.com/community/c6h3068431p27691386)) Find all positive integers $m$ and $n$ that satisfy the equality: 
+$$
 n^5+n^4=7^m-1
 $$
 **Solution:** The hard step is to factorise $n^5+n^4+1$ into $(n^3-n+1)(n^2+n+1)$. By using the euclidean algorithm we can deduce that $\gcd(n^3-n+1, n^2+n+1) = \gcd(n-2,7) \in \{1,7\}$. We conclude that $n=2$ and $m=2$ is the only solution.
