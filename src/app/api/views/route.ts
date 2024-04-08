@@ -1,72 +1,80 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export async function GET(
-  req: NextRequest,
-) {
+export async function GET(req: NextRequest) {
   try {
-    const slug = req.nextUrl.searchParams.get('slug');
+    const slug = req.nextUrl.searchParams.get("slug");
 
-    if (slug === '') {
+    if (slug === "") {
       const totalViews = await prisma.views.aggregate({
         _sum: {
-          count: true
-        }
+          count: true,
+        },
       });
 
-      return NextResponse.json({
-        views: totalViews?._sum?.count ?? 0
-      },{
-        status: 200
-      })
+      return NextResponse.json(
+        {
+          views: totalViews?._sum?.count ?? 0,
+        },
+        {
+          status: 200,
+        }
+      );
     }
 
     const views = await prisma.views.findUnique({
       where: {
-        articleSlug: slug as string
+        articleslug: slug as string,
       },
       select: {
-        count: true
-      }
+        count: true,
+      },
     });
 
-    return NextResponse.json({
-      views: views?.count ?? 0
-    },{
-      status: 200
-    })
+    return NextResponse.json(
+      {
+        views: views?.count ?? 0,
+      },
+      {
+        status: 200,
+      }
+    );
   } catch (error) {
-    console.log('error', error);
+    console.log("error", error);
 
-    return NextResponse.json({
-      message: 'Something went wrong.',
-      error
-    },{
-      status: 500
-    })
+    return NextResponse.json(
+      {
+        message: "Something went wrong.",
+        error,
+      },
+      {
+        status: 500,
+      }
+    );
   }
 }
 
-export async function POST(
-  req: NextRequest,
-) {
+export async function POST(req: NextRequest) {
   try {
-    const slug = req.nextUrl.searchParams.get('slug');
+    const slug = req.nextUrl.searchParams.get("slug");
 
     if (!slug) {
-      return NextResponse.json({
-        message: 'Article slug is required.'
-      },{
-        status: 500
-      })
+      return NextResponse.json(
+        {
+          message: "Article slug is required.",
+        },
+        {
+          status: 500,
+        }
+      );
     }
 
     const article = await prisma.articles.findUnique({
       where: {
-        slug
-      }
+        slug,
+      },
     });
 
     if (!article) {
@@ -76,20 +84,26 @@ export async function POST(
 
     const views = await updateView(slug);
 
-    return NextResponse.json({
-      views: views.count
-    },{
-      status: 200
-    })
+    return NextResponse.json(
+      {
+        views: views.count,
+      },
+      {
+        status: 200,
+      }
+    );
   } catch (error) {
-    console.log('error', error);
+    console.log("error", error);
 
-    return NextResponse.json({
-      message: 'Something went wrong.',
-      error
-    },{
-      status: 500
-    })
+    return NextResponse.json(
+      {
+        message: "Something went wrong.",
+        error,
+      },
+      {
+        status: 500,
+      }
+    );
   }
 }
 
@@ -104,7 +118,7 @@ function addArticle(slug: string) {
 function addView(slug: string) {
   return prisma.views.create({
     data: {
-      articleSlug: slug,
+      articleslug: slug,
     },
   });
 }
@@ -112,7 +126,7 @@ function addView(slug: string) {
 function updateView(slug: string) {
   return prisma.views.update({
     where: {
-      articleSlug: slug,
+      articleslug: slug,
     },
     data: {
       count: {
