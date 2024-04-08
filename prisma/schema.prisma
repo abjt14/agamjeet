@@ -1,43 +1,34 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
-  url = env("DATABASE_URL")
+  provider     = "postgresql"
+  url          = env("DATABASE_URL")
+  directUrl    = env("DIRECT_URL")
   relationMode = "prisma"
 }
 
-model Articles {
-  slug String @id @unique
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+model articles {
+  slug      String   @id(map: "articles_slug_key") @db.VarChar(191)
+  createdat DateTime @default(dbgenerated("CURRENT_TIMESTAMP(3)"))
+  updatedat DateTime @updatedAt
 }
 
-model Views {
-  articleSlug String @id @unique
-  count Int @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+model views {
+  count       Int      @default(0)
+  articleslug String   @id(map: "views_articleslug_key") @db.VarChar(191)
+  createdat   DateTime @default(dbgenerated("CURRENT_TIMESTAMP(3)"))
+  updatedat   DateTime @updatedAt
 }
 
-model Downloads {
-  id Int @id @default(autoincrement())
-  articleSlug String
-  count Int @default(0)
-  type Int
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+model downloads {
+  count       Int      @default(0)
+  type        Int
+  articleslug String   @db.VarChar(191)
+  createdat   DateTime @default(dbgenerated("CURRENT_TIMESTAMP(3)"))
+  updatedat   DateTime @updatedAt
+  id          Int      @id @default(autoincrement())
 
-  @@unique(fields: [articleSlug, type], name: "downloadsId")
-}
-
-model DownloadTypes {
-  id Int @id @default(autoincrement())
-  name String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  @@unique([articleslug, type], name: "downloadsId")
 }
