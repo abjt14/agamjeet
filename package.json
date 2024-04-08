@@ -10,7 +10,6 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@planetscale/database": "^1.7.0",
     "@prisma/client": "^4.15.0",
     "@types/node": "20.2.1",
     "@types/react": "18.2.6",
