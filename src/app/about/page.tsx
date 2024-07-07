@@ -13,7 +13,7 @@ export default function About() {
             animationDelay: "100ms"
           }}
         >
-          Hi! I am Agamjeet Singh, a 17 year old math enthusiast living in Ramagundam, India.
+          Hi! I am Agamjeet Singh, an 18 year old math enthusiast living in Ramagundam, India.
         </div>
       </div>
       <div className="block sm:flex flex-col sm:flex-row gap-8 md:gap-12 justify-between items-start sm:items-center">
