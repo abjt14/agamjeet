@@ -1,0 +1,60 @@
+--- 
+title: 'RMO 2024 Pasta Mock One'
+publishedAt: '2024-9-14'
+summary: 'Sharing a light mock test for RMO 2024 and discussing the solutions'
+category: 'mock-test'
+answerKey: false
+---
+
+It's good to be back! This is the first RMO Mock test from Season 3 of MOMC! As always, all the credit and authorship of the problems belongs to their respective sources.
+
+Below, I'll be discussing the solutions of the problems in the mock. So if you plan to attempt the mock, beware of the spoilers ahead!
+
+**Problem 1** ([Sharygin 2020](https://artofproblemsolving.com/community/c6h2021518p14213057)) Let $ABCD$ be a cyclic quadrilateral. A circle passing through $A$ and $B$ meets $AC$ and $BD$ at points $E$ and $F$ respectively. The lines $AF$ and $BC$ meet at point $P$, and the lines $BE$ and $AD$ meet at point $Q$. Prove that $PQ$ is parallel to $CD$.
+
+**Solution:** Similar to last year, I wouldn't be providing solutions to any geometry problems here in this blog. Nevertheless, you can check out some amazing solutions by AoPS users [here](https://artofproblemsolving.com/community/c6h2021518p14213057).
+
+
+**Problem 2** ([All Russian MO 2014](https://artofproblemsolving.com/community/c6h587606p3478254)) Peter and Bob play a game on a $n \times n$ chessboard. At the beginning, all squares are white apart from one black corner square containing a rook. Players take turns to move the rook to a white square and recolour the square black. The player who can not move loses. Peter goes first. Who has a winning strategy?
+
+**Solution:** AoPS User **IAmTheHazard** provides an extremely elegant solution.
+
+"Peter wins iff $n$ is even. If $n$ is even, his strategy is to divide the board into $1 \times 2$ rectangles; whenever a rook enters a rectangle (including on the first move) he moves it to the other cell. If $n$ is odd, Bob's strategy is to divide the board except for the starting cell into $1 \times 2$ rectangles and employ the same strategy. $\blacksquare$ " In RMO, you should carefully reason *why* these strategies work.
+
+Click [here](https://artofproblemsolving.com/community/c6h587606p28499363) for the AoPS link of the above solution. This solution deserves your upvote!
+
+
+**Problem 3** ([All Russian MO 1999](https://artofproblemsolving.com/community/c6h514373p2889826)) Prove that for all natural numbers $n$,$$ \sum_{k=1}^{n^2} \left\{ \sqrt{k} \right\} \le \frac{n^2-1}{2}. $$Here, $\{x\}$ denotes the fractional part of $x$.
+
+**Solution:** Induction is our best friend for inequality problems like these. The base case $n = 1$ is simple to check. The inductive step is to show the inequality:
+$$\sum_{k = n^2 + 1}^{(n + 1)^2} \left\{ \sqrt{k} \right\}\le \frac{2n + 1}{2}$$
+We observe that $\lfloor \sqrt{k} \rfloor = n$ for any $k \neq (n+1)^2$ in the sum. We don't have to worry about that as then $\left\{ \sqrt{(n+1)^2} \right\} = 0$. So the result is equivalent to showing that $\sum_{k = n^2 + 1}^{(n + 1)^2-1} \left\{ \sqrt{k} \right\} + \left \lfloor \sqrt{k} \right \rfloor \le \frac{2n + 1}{2} + 2n^2$ or $$\sum_{k = n^2 + 1}^{(n + 1)^2-1} \sqrt{k} \le \frac{4n^2 + 2n + 1}{2}$$As the number of remaining numbers ($2n$) is even, we do gaussian pairing. By Jensen's inequality, we have:
+$$\sqrt{n^2 + i} + \sqrt{(n + 1)^2 - i} \le 2\sqrt{\frac{n^2 + i + (n + 1)^2 - i}{2}} = 2\sqrt{\frac{2n^2 + 2n + 1}{2}}$$
+There are $n$ such pairs. If the sum of each pair is $\leq \frac{1}{n} \cdot \text{R.H.S}$, then we would be done. Hence it suffices to show that $$2\sqrt{\frac{2n^2 + 2n + 1}{2}} \leq \frac{4n^2+2n+1}{2n}$$which after some manipulations is equivalent to $(2n+1)^2 \geq 0$.
+
+
+**Problem 4** ([European Mathematical Cup 2022](https://artofproblemsolving.com/community/c6h2981400p26731943)) Determine all positive integers $n$ for which there exist positive divisors $a$, $b$, $c$ of $n$ such that $a>b>c$ and $a^2 - b^2$, $b^2 - c^2$, $a^2 - c^2$ are also divisors of $n$.
+
+**Solution:** This problem is quite troll as it doesn't actually involve any remainder bounding or manipulating expressions. Observe that $n$ must be divisible by $3$ because other $a,b,c \mid n \implies a,b,c \not \equiv 0 \pmod 3$. Hence $a^2 \equiv b^2 \equiv c^2 \equiv 1 \pmod 3$ which implies $3 \mid a^2 - b^2 \mid n$, a contradiction! Similarly, $4$ and $5$ must also divide $n$. Therefore $3 \cdot 4 \cdot 5 = 60$ must divide $n$.
+
+A bit of hit and trial would show that $a = 4, b = 2, c = 1$ work for any multiple of $60$. So $60 \mid n$ is a necessary and sufficient condition.
+
+
+**Problem 5** ([Sharygin 2023](https://artofproblemsolving.com/community/c6h3025555p27210359)) Let $H$ be the orthocenter of an acute-angled triangle $ABC$; $E$, $F$ be points on $AB, AC$ respectively, such that $AEHF$ is a parallelogram; $X, Y$ be the common points of the line $EF$ and the circumcircle $\omega$ of triangle $ABC$; $Z$ be the point of $\omega$ opposite to $A$. Prove that $H$ is the orthocenter of triangle $XYZ$.
+
+**Solution:** We don't do geometry here. See solutions on AoPS [here](https://artofproblemsolving.com/community/c6h3025555p27210359).
+
+
+**Problem 6** ([Benelux MO 2019](https://artofproblemsolving.com/community/c6h1829781p12248263)) An integer $m>1$ is called *rich* if for any positive integer $n$, there exist positive integers $x,y,z$ such that $n=mx^2-y^2-z^2$. An integer $m>1$ is *poor* if it is not rich.
+- Show that there exist infinitely many poor integers.
+- Do there exist infinitely many rich integers?
+
+**Solution:** Having faith in $\pmod 3$, we try $n = 6$ and $m = 3$. This works as $3x^2 - y^2 - z^2 \equiv 6 \pmod 9$ is impossible. To see this, note that the possible quadratic residues modulo $9$ are $0, 1, 4, 7$. Observe that $3x^2 \equiv 0 \text{ or } 3 \pmod 9$. Hence we require $y,z$ such that $y^2 + z^2 \equiv 3 \text{ or } 6 \pmod 9$. It is not hard to see that this has no solutions. It turns that this works for any $m = 9k+3, n = 6$ where $k \in \mathbb{N}$.
+
+The second part of the problem is trickier. Consider $m = c^2+1$ where $c$ is such that $a^2 +b^2 = c^2$ is a primitive pythagorean triplet. So $\gcd(a,b,c) = 1$. Note that $(c^2+1)x^2 - (cx)^2 - (x-1)^2 = 2x-1$. Hence every odd positive integer can be represented other than $1$ as $x - 1 > 0$. But $1$ can easily be represented as $c^2 + 1 - a^2 - b^2$.
+
+Now consider $(c^2+1)x^2-(cx-1)^2-(x+c-2)^2=4x+c^2-4c+5$. As $c$ is odd (otherwise taking$\pmod 4$ in $a^2+b^2 = c^2$ shows that $a,b$ must also be even, but then $a,b,c$ wouldn't be coprime), we can represent any positive integer of the form $4k+2$. We don't have to worry if we require $x < 0$ as we can easily guarantee that $x,y,z > 0$ by switching the signs to $+$ when we need to.
+
+To represent multiples of $4$, we multiply the triple $(x,y,z)$ by $2$ enough times. To be more concrete, let $n = 4n'$. Then if $n'$ is represented by $(x,y,z)$ then $n$ is represented by $2x, 2y, 2z$. Therefore if $n'$ is representable then so is $4n'$ for any $n'$.
+
+So are we done? Yeah, but this is RMO. So you might want to also show that there exist infinitely many primitive pythagorean triplets which you can do by showing that the general form $(m^2 - n^2, 2mn, m^2+n^2)$ works.
