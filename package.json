@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:content": "contentlayer2 build",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate"
@@ -16,29 +17,28 @@
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
     "clsx": "^1.2.1",
-    "contentlayer": "^0.3.2",
     "date-fns": "^2.30.0",
     "eslint": "8.40.0",
     "eslint-config-next": "^13.4.6",
-    "next": "^13.4.6",
-    "next-contentlayer": "^0.3.2",
+    "next": "^15.5.0",
+    "next-contentlayer2": "^0.5.8",
     "postcss": "^8.5.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "rehype-autolink-headings": "^6.1.1",
-    "rehype-katex": "^6.0.3",
-    "rehype-mathjax": "^4.0.2",
-    "rehype-slug": "^5.1.0",
-    "remark-gfm": "^3.0.1",
-    "remark-math": "^5.1.1",
-    "swr": "^2.1.5",
+    "rehype-autolink-headings": "latest",
+    "rehype-katex": "latest",
+    "rehype-mathjax": "latest",
+    "rehype-slug": "latest",
+    "remark-gfm": "latest",
+    "remark-math": "latest",
+    "swr": "latest",
     "tailwindcss": "3.3.2",
-    "typescript": "5.0.4"
+    "typescript": "^5.9.2"
   },
   "devDependencies": {
     "prisma": "^4.15.0"
   },
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.0.0"
   }
 }

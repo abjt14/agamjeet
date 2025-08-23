@@ -1,50 +1,50 @@
-import { defineDocumentType, makeSource } from 'contentlayer/source-files';
-import rehypeSlug from 'rehype-slug';
-import rehypeAutolinkHeadings from 'rehype-autolink-headings';
-import rehypeKatex from 'rehype-katex';
-import remarkMath from 'remark-math';
-import remarkGfm from 'remark-gfm';
+import { defineDocumentType, makeSource } from "contentlayer2/source-files";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
+import remarkGfm from "remark-gfm";
 
 export const Article = defineDocumentType(() => ({
-  name: 'Article',
+  name: "Article",
   filePathPattern: `**/*.mdx`,
-  contentType: 'mdx',
+  contentType: "mdx",
   fields: {
     title: {
-      type: 'string',
+      type: "string",
       required: true,
     },
     publishedAt: {
-      type: 'string',
+      type: "string",
       required: true,
     },
     summary: {
-      type: 'string',
+      type: "string",
       required: true,
     },
     category: {
-      type: 'string',
+      type: "string",
       required: true,
     },
     answerKey: {
-      type: 'boolean',
+      type: "boolean",
       required: false,
-    }
+    },
   },
   computedFields: {
     slug: {
-      type: 'string',
+      type: "string",
       resolve: (doc) => doc._raw.flattenedPath,
     },
     readingTime: {
-      type: 'number',
+      type: "number",
       resolve: (doc) => calculateReadingTime(doc.body.raw),
     },
-  }
+  },
 }));
 
 export default makeSource({
-  contentDirPath: 'content',
+  contentDirPath: "content",
   documentTypes: [Article],
   mdx: {
     remarkPlugins: [remarkMath, remarkGfm],
@@ -55,12 +55,12 @@ export default makeSource({
         rehypeAutolinkHeadings,
         {
           properties: {
-            className: ['anchor'],
+            className: ["anchor"],
           },
-        }
-      ]
+        },
+      ],
     ],
-  }
+  },
 });
 
 function calculateReadingTime(text) {

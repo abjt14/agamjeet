@@ -1,4 +1,4 @@
-import { allArticles } from 'contentlayer/generated';
+import { allArticles } from "contentlayer/generated";
 
 export default async function sitemap() {
   const articles = allArticles.map((post) => ({
@@ -6,12 +6,10 @@ export default async function sitemap() {
     lastModified: post.publishedAt,
   }));
 
-  const routes = ['', '/about', '/stats'].map(
-    (route) => ({
-      url: `https://agamjeet.com${route}`,
-      lastModified: new Date().toISOString().split('T')[0],
-    })
-  );
+  const routes = ["", "/about", "/stats"].map((route) => ({
+    url: `https://agamjeet.com${route}`,
+    lastModified: new Date().toISOString().split("T")[0],
+  }));
 
   return [...routes, ...articles];
 }
