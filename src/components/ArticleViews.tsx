@@ -1,7 +1,7 @@
 "use client";
 
 import { useIncrementView, useViews } from "@/lib/queries";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function ArticleViews({
   slug,
@@ -10,11 +10,14 @@ export default function ArticleViews({
   slug: string;
   trackView: boolean;
 }) {
+  const viewCounted = useRef(false);
   const { data, isPending } = useViews(slug);
   const { mutate } = useIncrementView(slug);
 
   useEffect(() => {
+    if (!viewCounted || viewCounted.current === true) return;
     trackView && mutate();
+    viewCounted.current = true;
   }, [trackView, mutate]);
 
   return (

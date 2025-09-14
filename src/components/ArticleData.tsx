@@ -35,7 +35,7 @@ function DownloadsCounter({
     return problemsIsLoading || answesKeysIsLoading ? (
       <Spinner />
     ) : (
-      <>{(problems?.downloads ?? 0) + (answesKeys?.downloads ?? 0)}</>
+      <>{problems?.downloads ?? 0}</>
     );
   }
 }
