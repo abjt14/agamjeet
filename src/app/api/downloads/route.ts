@@ -1,74 +1,47 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 
-const prisma = new PrismaClient();
+export const revalidate = 60;
+
+const mapType = (t: "problems" | "answer-key") => (t === "problems" ? 1 : 2);
 
 export async function GET(req: NextRequest) {
   try {
     const slug = req.nextUrl.searchParams.get("slug");
-    const type = req.nextUrl.searchParams.get("type");
+    const type = req.nextUrl.searchParams.get("type") as
+      | "problems"
+      | "answer-key"
+      | null;
 
-    if (slug === "" && !type) {
-      const totalDownloads = await prisma.downloads.aggregate({
-        _sum: {
-          count: true,
-        },
-      });
-
+    if (!slug) {
+      const total = await prisma.downloads.aggregate({ _sum: { count: true } });
       return NextResponse.json(
-        {
-          downloads: totalDownloads?._sum?.count ?? 0,
-          type,
-        },
-        {
-          status: 200,
-        }
+        { downloads: total._sum.count ?? 0 },
+        { status: 200 }
       );
     }
 
     if (!type) {
       return NextResponse.json(
-        {
-          message: "Download type is required.",
-        },
-        {
-          status: 500,
-        }
+        { message: "Download type is required" },
+        { status: 400 }
       );
     }
 
-    const downloads = await prisma.downloads.findUnique({
-      where: {
-        downloadsId: {
-          articleslug: slug as string,
-          type: type === "problems" ? 1 : 2,
-        },
-      },
-      select: {
-        count: true,
-      },
+    const row = await prisma.downloads.findUnique({
+      where: { downloadsId: { articleslug: slug, type: mapType(type) } },
+      select: { count: true },
     });
 
     return NextResponse.json(
-      {
-        downloads: downloads?.count ?? 0,
-        type,
-      },
-      {
-        status: 200,
-      }
+      { downloads: row?.count ?? 0, type },
+      { status: 200 }
     );
-  } catch (error) {
-    console.log("error", error);
-
+  } catch (e) {
+    console.error("GET /downloads", e);
     return NextResponse.json(
-      {
-        message: "Something went wrong.",
-        error,
-      },
-      {
-        status: 500,
-      }
+      { message: "Something went wrong" },
+      { status: 500 }
     );
   }
 }
@@ -76,69 +49,42 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     const slug = req.nextUrl.searchParams.get("slug");
-    const type = req.nextUrl.searchParams.get("type");
+    const type = req.nextUrl.searchParams.get("type") as
+      | "problems"
+      | "answer-key"
+      | null;
 
-    if (!slug) {
+    if (!slug)
       return NextResponse.json(
-        {
-          message: "Article slug is required.",
-        },
-        {
-          status: 500,
-        }
+        { message: "Article slug is required" },
+        { status: 400 }
       );
-    }
-
-    if (!type) {
+    if (!type)
       return NextResponse.json(
-        {
-          message: "Download type is required.",
-        },
-        {
-          status: 500,
-        }
+        { message: "Download type is required" },
+        { status: 400 }
       );
-    }
 
-    const updateDownloads = await prisma.downloads.upsert({
-      where: {
-        downloadsId: {
-          articleslug: slug,
-          type: type === "problems" ? 1 : 2,
-        },
-      },
-      create: {
-        articleslug: slug,
-        type: type === "problems" ? 1 : 2,
-        count: 1,
-      },
-      update: {
-        count: {
-          increment: 1,
-        },
-      },
+    const updated = await prisma.downloads.upsert({
+      where: { downloadsId: { articleslug: slug, type: mapType(type) } },
+      create: { articleslug: slug, type: mapType(type), count: 1 },
+      update: { count: { increment: 1 } },
     });
 
-    return NextResponse.json(
-      {
-        downloads: updateDownloads.count,
-        type,
-      },
-      {
-        status: 200,
-      }
-    );
-  } catch (error) {
-    console.log("error", error);
+    const { revalidateTag } = await import("next/cache");
+    revalidateTag("downloads");
+    revalidateTag(`downloads:${slug}`);
+    revalidateTag(`downloads:${slug}:${type}`);
 
     return NextResponse.json(
-      {
-        message: "Something went wrong.",
-        error,
-      },
-      {
-        status: 500,
-      }
+      { downloads: updated.count, type },
+      { status: 200 }
+    );
+  } catch (e) {
+    console.error("POST /downloads", e);
+    return NextResponse.json(
+      { message: "Something went wrong" },
+      { status: 500 }
     );
   }
 }
