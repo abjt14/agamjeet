@@ -9,12 +9,6 @@ datasource db {
   relationMode = "prisma"
 }
 
-model articles {
-  slug      String   @id(map: "articles_slug_key") @db.VarChar(191)
-  createdat DateTime @default(dbgenerated("CURRENT_TIMESTAMP(3)"))
-  updatedat DateTime @updatedAt
-}
-
 model views {
   count       Int      @default(0)
   articleslug String   @id(map: "views_articleslug_key") @db.VarChar(191)

@@ -1,19 +1,23 @@
-'use client';
+"use client";
+
+import { useRegisterDownload } from "@/lib/queries";
 
 interface DownloadButtonProps {
-  type: 'problems' | 'answer-key';
+  type: "problems" | "answer-key";
   slug: string;
 }
 
 export default function DownloadButton({ type, slug }: DownloadButtonProps) {
+  const { mutate } = useRegisterDownload(slug, type);
+
   const content = [
     {
-      id: 'problems',
-      text: 'problems',
+      id: "problems",
+      text: "problems",
     },
     {
-      id: 'answer-key',
-      text: 'answer key',
+      id: "answer-key",
+      text: "answer key",
     },
   ];
 
@@ -22,14 +26,10 @@ export default function DownloadButton({ type, slug }: DownloadButtonProps) {
       href={`/articles/${slug}/${type}.pdf`}
       target="_blank"
       className="flex flex-1 sm:flex-none gap-2 items-center justify-center px-2 py-2 sm:px-3 sm:py-1 rounded-md transition-[border-color] duration-150 bg-macaroni-and-cheese-100 border border-macaroni-and-cheese-300 text-cinder-800 hover:border-cinder-800 dark:bg-neutral-950 dark:border-cinder-800 dark:text-cinder-300 dark:hover:border-macaroni-and-cheese-300 group"
-      onClick={() => {
-        fetch(`/api/downloads?slug=${slug}&type=${type}`, {
-          method: 'POST',
-        })
-        .catch((err) => console.error(err));
-      }}
+      onClick={() => mutate()}
     >
-      <span className="
+      <span
+        className="
         relative
         overflow-hidden
 
@@ -58,10 +58,13 @@ export default function DownloadButton({ type, slug }: DownloadButtonProps) {
         after:duration-500
         after:ease-easeInOutExpo
         group-hover:after:-translate-y-1/2
-      ">
+      "
+      >
         <span className="text-transparent">↓</span>
       </span>
-      <span className="text-base sm:text-sm">{content.find((item) => item.id === type)?.text}</span>
+      <span className="text-base sm:text-sm">
+        {content.find((item) => item.id === type)?.text}
+      </span>
     </a>
-  )
+  );
 }
