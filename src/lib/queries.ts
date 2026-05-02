@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getViews, postView, getDownloads, postDownload } from "./api";
+import type { DownloadType } from "./download-types";
 
 export function useViews(slug?: string) {
   return useQuery({
@@ -38,17 +39,14 @@ export function useIncrementView(slug: string) {
   });
 }
 
-export function useDownloads(slug: string, type: "problems" | "answer-key") {
+export function useDownloads(slug: string, type: DownloadType) {
   return useQuery({
     queryKey: ["downloads", slug, type],
     queryFn: () => getDownloads(slug, type),
   });
 }
 
-export function useRegisterDownload(
-  slug: string,
-  type: "problems" | "answer-key"
-) {
+export function useRegisterDownload(slug: string, type: DownloadType) {
   const qc = useQueryClient();
   const key = ["downloads", slug, type];
   return useMutation({

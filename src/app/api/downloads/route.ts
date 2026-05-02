@@ -1,19 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
 import { ratelimit, getClientIp } from "@/lib/ratelimit";
-
-const MAX_SLUG_LENGTH = 191;
-const SLUG_PATTERN = /^[a-zA-Z0-9_\-/.]+$/;
-const DOWNLOAD_TYPES = ["problems", "answer-key"] as const;
-type DownloadType = (typeof DOWNLOAD_TYPES)[number];
-
-function isValidSlug(slug: string | null): slug is string {
-  return !!slug && slug.length <= MAX_SLUG_LENGTH && SLUG_PATTERN.test(slug);
-}
-
-function isValidType(type: string | null): type is DownloadType {
-  return type !== null && (DOWNLOAD_TYPES as readonly string[]).includes(type);
-}
+import { isValidSlug } from "@/lib/slug";
+import { isValidDownloadType } from "@/lib/download-types";
 
 export async function GET(req: NextRequest) {
   try {
@@ -29,7 +18,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ message: "Invalid slug" }, { status: 400 });
     }
 
-    if (!isValidType(type)) {
+    if (!isValidDownloadType(type)) {
       return NextResponse.json(
         { message: "Invalid or missing type" },
         { status: 400 }
@@ -56,7 +45,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: "Invalid slug" }, { status: 400 });
     }
 
-    if (!isValidType(type)) {
+    if (!isValidDownloadType(type)) {
       return NextResponse.json(
         { message: "Invalid or missing type" },
         { status: 400 }

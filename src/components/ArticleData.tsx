@@ -1,6 +1,7 @@
 "use client";
 
 import { useDownloads, useViews } from "@/lib/queries";
+import type { DownloadType } from "@/lib/download-types";
 
 function ViewsCounter({ slug }: { slug: string }) {
   const { data, isLoading } = useViews(slug);
@@ -12,7 +13,7 @@ function DownloadsCounter({
   type,
 }: {
   slug: string;
-  type: "problems" | "answer-key" | "any";
+  type: DownloadType | "any";
 }) {
   const { data: problems, isLoading: problemsIsLoading } = useDownloads(
     slug,
@@ -47,7 +48,7 @@ export default function ArticleData({
 }: {
   slug: string;
   type: "views" | "downloads";
-  downloadsType?: "problems" | "answer-key" | "any";
+  downloadsType?: DownloadType | "any";
 }) {
   if (type === "views") return <ViewsCounter slug={slug} />;
   if (downloadsType === "any")
