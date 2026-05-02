@@ -1,25 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { redis } from "@/lib/redis";
+import { ratelimit, getClientIp } from "@/lib/ratelimit";
 
-export const revalidate = 60;
+const MAX_SLUG_LENGTH = 191;
+const SLUG_PATTERN = /^[a-zA-Z0-9_\-/.]+$/;
+
+function isValidSlug(slug: string | null): slug is string {
+  return !!slug && slug.length <= MAX_SLUG_LENGTH && SLUG_PATTERN.test(slug);
+}
 
 export async function GET(req: NextRequest) {
   try {
     const slug = req.nextUrl.searchParams.get("slug");
-    if (!slug) {
-      const total = await prisma.views.aggregate({ _sum: { count: true } });
-      return NextResponse.json(
-        { views: total._sum.count ?? 0 },
-        { status: 200 }
-      );
+
+    if (slug === null) {
+      const total = (await redis.get<number>("views:total")) ?? 0;
+      return NextResponse.json({ views: total }, { status: 200 });
     }
 
-    const row = await prisma.views.findUnique({
-      where: { articleslug: slug },
-      select: { count: true },
-    });
+    if (!isValidSlug(slug)) {
+      return NextResponse.json({ message: "Invalid slug" }, { status: 400 });
+    }
 
-    return NextResponse.json({ views: row?.count ?? 0 }, { status: 200 });
+    const count = (await redis.get<number>(`views:${slug}`)) ?? 0;
+    return NextResponse.json({ views: count }, { status: 200 });
   } catch (e) {
     console.error("GET /views", e);
     return NextResponse.json(
@@ -32,25 +36,29 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
   try {
     const slug = req.nextUrl.searchParams.get("slug");
-    if (!slug) {
+
+    if (!isValidSlug(slug)) {
+      return NextResponse.json({ message: "Invalid slug" }, { status: 400 });
+    }
+
+    const { success, reset } = await ratelimit.limit(`views:${getClientIp(req)}`);
+    if (!success) {
       return NextResponse.json(
-        { message: "Article slug is required" },
-        { status: 400 }
+        { message: "Too many requests" },
+        {
+          status: 429,
+          headers: { "Retry-After": String(Math.ceil((reset - Date.now()) / 1000)) },
+        }
       );
     }
 
-    const updated = await prisma.views.upsert({
-      where: { articleslug: slug },
-      create: { articleslug: slug, count: 1 },
-      update: { count: { increment: 1 } },
-    });
+    const [count] = await redis
+      .multi()
+      .incr(`views:${slug}`)
+      .incr("views:total")
+      .exec<[number, number]>();
 
-    // Bust the cached GET
-    const { revalidateTag } = await import("next/cache");
-    revalidateTag("views"); // total endpoint if you add tags later
-    revalidateTag(`views:${slug}`); // per-slug endpoint
-
-    return NextResponse.json({ views: updated.count }, { status: 200 });
+    return NextResponse.json({ views: count }, { status: 200 });
   } catch (e) {
     console.error("POST /views", e);
     return NextResponse.json(
