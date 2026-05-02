@@ -1,3 +1,5 @@
+import type { DownloadType } from "./download-types";
+
 export async function getViews(slug?: string) {
   const url = slug
     ? `/api/views?slug=${encodeURIComponent(slug)}`
@@ -21,7 +23,7 @@ export async function postView(slug: string) {
 
 export async function getDownloads(
   slug?: string,
-  type?: "problems" | "answer-key"
+  type?: DownloadType
 ) {
   const qs = new URLSearchParams();
   if (slug !== undefined) qs.set("slug", slug);
@@ -34,10 +36,7 @@ export async function getDownloads(
   return res.json() as Promise<{ downloads: number; type?: string | null }>;
 }
 
-export async function postDownload(
-  slug: string,
-  type: "problems" | "answer-key"
-) {
+export async function postDownload(slug: string, type: DownloadType) {
   const qs = new URLSearchParams({ slug, type });
   const res = await fetch(`/api/downloads?${qs.toString()}`, {
     method: "POST",

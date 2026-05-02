@@ -1,9 +1,10 @@
 "use client";
 
 import { useRegisterDownload } from "@/lib/queries";
+import type { DownloadType } from "@/lib/download-types";
 
 interface DownloadButtonProps {
-  type: "problems" | "answer-key";
+  type: DownloadType;
   slug: string;
 }
 
