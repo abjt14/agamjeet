@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
     const slug = req.nextUrl.searchParams.get("slug");
     const type = req.nextUrl.searchParams.get("type");
 
-    if (slug === null) {
+    if (!slug) {
       const total = (await redis.get<number>("downloads:total")) ?? 0;
       return NextResponse.json({ downloads: total }, { status: 200 });
     }

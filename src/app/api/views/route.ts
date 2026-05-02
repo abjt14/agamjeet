@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
   try {
     const slug = req.nextUrl.searchParams.get("slug");
 
-    if (slug === null) {
+    if (!slug) {
       const total = (await redis.get<number>("views:total")) ?? 0;
       return NextResponse.json({ views: total }, { status: 200 });
     }
