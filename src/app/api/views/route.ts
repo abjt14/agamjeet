@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
 import { ratelimit, getClientIp } from "@/lib/ratelimit";
 import { isValidSlug } from "@/lib/slug";
+import { serverError } from "@/lib/api";
 
 export async function GET(req: NextRequest) {
   try {
@@ -19,11 +20,7 @@ export async function GET(req: NextRequest) {
     const count = (await redis.get<number>(`views:${slug}`)) ?? 0;
     return NextResponse.json({ views: count }, { status: 200 });
   } catch (e) {
-    console.error("GET /views", e);
-    return NextResponse.json(
-      { message: "Something went wrong" },
-      { status: 500 }
-    );
+    return serverError("GET /views", e);
   }
 }
 
@@ -54,10 +51,6 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ views: count }, { status: 200 });
   } catch (e) {
-    console.error("POST /views", e);
-    return NextResponse.json(
-      { message: "Something went wrong" },
-      { status: 500 }
-    );
+    return serverError("POST /views", e);
   }
 }

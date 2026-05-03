@@ -3,6 +3,7 @@ import { redis } from "@/lib/redis";
 import { ratelimit, getClientIp } from "@/lib/ratelimit";
 import { isValidSlug } from "@/lib/slug";
 import { isValidDownloadType } from "@/lib/download-types";
+import { serverError } from "@/lib/api";
 
 export async function GET(req: NextRequest) {
   try {
@@ -28,11 +29,7 @@ export async function GET(req: NextRequest) {
     const count = (await redis.get<number>(`downloads:${slug}:${type}`)) ?? 0;
     return NextResponse.json({ downloads: count, type }, { status: 200 });
   } catch (e) {
-    console.error("GET /downloads", e);
-    return NextResponse.json(
-      { message: "Something went wrong" },
-      { status: 500 }
-    );
+    return serverError("GET /downloads", e);
   }
 }
 
@@ -73,10 +70,6 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ downloads: count, type }, { status: 200 });
   } catch (e) {
-    console.error("POST /downloads", e);
-    return NextResponse.json(
-      { message: "Something went wrong" },
-      { status: 500 }
-    );
+    return serverError("POST /downloads", e);
   }
 }

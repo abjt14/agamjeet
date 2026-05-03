@@ -1,6 +1,6 @@
 "use client";
 
-import { useIncrementView, useViews } from "@/lib/queries";
+import { useAllViews, useIncrementView, useViews } from "@/lib/queries";
 import { useEffect, useRef } from "react";
 
 export default function ArticleViews({
@@ -10,16 +10,41 @@ export default function ArticleViews({
   slug: string;
   trackView: boolean;
 }) {
+  if (trackView) return <ArticleViewsTracker slug={slug} />;
+  return <ArticleViewsBadge slug={slug} />;
+}
+
+function ArticleViewsBadge({ slug }: { slug: string }) {
+  const { data, isPending } = useAllViews();
+  return (
+    <ViewsLayout
+      isPending={isPending}
+      count={data?.byslug[slug] ?? 0}
+    />
+  );
+}
+
+function ArticleViewsTracker({ slug }: { slug: string }) {
   const viewCounted = useRef(false);
   const { data, isPending } = useViews(slug);
   const { mutate } = useIncrementView(slug);
 
   useEffect(() => {
     if (!viewCounted || viewCounted.current === true) return;
-    trackView && mutate();
+    mutate();
     viewCounted.current = true;
-  }, [trackView, mutate]);
+  }, [mutate]);
 
+  return <ViewsLayout isPending={isPending} count={data?.views ?? 0} />;
+}
+
+function ViewsLayout({
+  isPending,
+  count,
+}: {
+  isPending: boolean;
+  count: number;
+}) {
   return (
     <>
       <span>&#10022;</span>
@@ -40,7 +65,7 @@ export default function ArticleViews({
             />
           </svg>
         ) : (
-          <span>{data?.views ?? 0}</span>
+          <span>{count}</span>
         )}
         views
       </span>

@@ -7,11 +7,9 @@
     "build": "next build",
     "build:content": "contentlayer2 build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "prisma generate"
+    "lint": "next lint"
   },
   "dependencies": {
-    "@prisma/client": "^4.15.0",
     "@tanstack/react-query": "^5.87.4",
     "@types/node": "20.2.1",
     "@types/react": "19.2.14",
@@ -37,11 +35,6 @@
     "swr": "latest",
     "tailwindcss": "3.3.2",
     "typescript": "^5.9.2"
-  },
-  "devDependencies": {
-    "dotenv": "^17.4.2",
-    "prisma": "^4.15.0",
-    "tsx": "^4.21.0"
   },
   "engines": {
     "node": ">=22.0.0"
