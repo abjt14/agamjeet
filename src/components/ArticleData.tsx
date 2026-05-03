@@ -1,11 +1,13 @@
 "use client";
 
-import { useDownloads, useViews } from "@/lib/queries";
+import { useAllDownloads, useAllViews } from "@/lib/queries";
 import type { DownloadType } from "@/lib/download-types";
 
 function ViewsCounter({ slug }: { slug: string }) {
-  const { data, isLoading } = useViews(slug);
-  return isLoading ? <Spinner /> : <>{data?.views ?? 0}</>;
+  const { data, isLoading } = useAllViews();
+  if (isLoading) return <Spinner />;
+  const value = slug === "" ? data?.total : data?.byslug[slug];
+  return <>{value ?? 0}</>;
 }
 
 function DownloadsCounter({
@@ -15,30 +17,16 @@ function DownloadsCounter({
   slug: string;
   type: DownloadType | "any";
 }) {
-  const { data: problems, isLoading: problemsIsLoading } = useDownloads(
-    slug,
-    "problems"
-  );
-  const { data: answesKeys, isLoading: answesKeysIsLoading } = useDownloads(
-    slug,
-    "answer-key"
-  );
+  const { data, isLoading } = useAllDownloads();
+  if (isLoading) return <Spinner />;
 
-  if (type === "problems") {
-    return problemsIsLoading ? <Spinner /> : <>{problems?.downloads ?? 0}</>;
-  } else if (type === "answer-key") {
-    return answesKeysIsLoading ? (
-      <Spinner />
-    ) : (
-      <>{answesKeys?.downloads ?? 0}</>
-    );
-  } else {
-    return problemsIsLoading || answesKeysIsLoading ? (
-      <Spinner />
-    ) : (
-      <>{problems?.downloads ?? 0}</>
-    );
+  if (slug === "") {
+    return <>{data?.total ?? 0}</>;
   }
+
+  const counts = data?.byslug[slug];
+  const lookupType: DownloadType = type === "any" ? "problems" : type;
+  return <>{counts?.[lookupType] ?? 0}</>;
 }
 
 export default function ArticleData({
@@ -51,12 +39,6 @@ export default function ArticleData({
   downloadsType?: DownloadType | "any";
 }) {
   if (type === "views") return <ViewsCounter slug={slug} />;
-  if (downloadsType === "any")
-    return (
-      <>
-        <DownloadsCounter slug={slug} type="any" />
-      </>
-    );
   return <DownloadsCounter slug={slug} type={downloadsType} />;
 }
 

@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server";
 import type { DownloadType } from "./download-types";
 
 export async function getViews(slug?: string) {
@@ -8,6 +9,18 @@ export async function getViews(slug?: string) {
   if (!res.ok)
     throw Object.assign(new Error("GET /views failed"), { status: res.status });
   return res.json() as Promise<{ views: number }>;
+}
+
+export async function getAllViews() {
+  const res = await fetch("/api/views/all", { method: "GET" });
+  if (!res.ok)
+    throw Object.assign(new Error("GET /views/all failed"), {
+      status: res.status,
+    });
+  return res.json() as Promise<{
+    total: number;
+    byslug: Record<string, number>;
+  }>;
 }
 
 export async function postView(slug: string) {
@@ -21,19 +34,16 @@ export async function postView(slug: string) {
   return res.json() as Promise<{ views: number }>;
 }
 
-export async function getDownloads(
-  slug?: string,
-  type?: DownloadType
-) {
-  const qs = new URLSearchParams();
-  if (slug !== undefined) qs.set("slug", slug);
-  if (type) qs.set("type", type);
-  const res = await fetch(`/api/downloads?${qs.toString()}`, { method: "GET" });
+export async function getAllDownloads() {
+  const res = await fetch("/api/downloads/all", { method: "GET" });
   if (!res.ok)
-    throw Object.assign(new Error("GET /downloads failed"), {
+    throw Object.assign(new Error("GET /downloads/all failed"), {
       status: res.status,
     });
-  return res.json() as Promise<{ downloads: number; type?: string | null }>;
+  return res.json() as Promise<{
+    total: number;
+    byslug: Record<string, Partial<Record<DownloadType, number>>>;
+  }>;
 }
 
 export async function postDownload(slug: string, type: DownloadType) {
@@ -46,4 +56,12 @@ export async function postDownload(slug: string, type: DownloadType) {
       status: res.status,
     });
   return res.json() as Promise<{ downloads: number; type: string }>;
+}
+
+export function serverError(label: string, err: unknown) {
+  console.error(label, err);
+  return NextResponse.json(
+    { message: "Something went wrong" },
+    { status: 500 }
+  );
 }
