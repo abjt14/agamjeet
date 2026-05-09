@@ -8,7 +8,7 @@
 - [Next.js](https://nextjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [ContentLayer MDX](https://www.contentlayer.dev/)
-- [Supabase](https://supabase.com/)
+- [Upstash](https://upstash.com/)
 - [Prisma](https://www.prisma.io/)
 - [Vercel](https://vercel.com/)
 
